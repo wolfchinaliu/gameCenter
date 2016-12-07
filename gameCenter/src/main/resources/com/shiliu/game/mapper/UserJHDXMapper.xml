@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.UserJHDXMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.UserJHDX" >
+    <id column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="upToDate" property="uptodate" jdbcType="DATE" />
+    <result column="flux" property="flux" jdbcType="VARCHAR" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="gameId" property="gameid" jdbcType="VARCHAR" />
+  </resultMap>
+    <!-- 查询最新更新时间 -->
+  <select id="selectUpdate" resultType="java.util.Date" >
+  		SELECT MAX(upToDate) FROM user_jhdx
+  </select>
+  <!-- 查询手机号码用户的最新信息 -->
+  <select id="SelectUpdatePhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  	select userId, phone, upToDate, flux, total, status, gameId from 
+  		user_jhdx where upToDate = (select max(upToDate) from user_jhdx ) and phone = #{phone}
+  </select>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    userId, phone, upToDate, flux, total, status, gameId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.UserJHDXExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_jhdx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_jhdx
+    where userId = #{userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_jhdx
+    where userId = #{userid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.UserJHDXExample" >
+    delete from user_jhdx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.UserJHDX" >
+    insert into user_jhdx (userId, phone, upToDate, 
+      flux, total, status, 
+      gameId)
+    values (#{userid,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{uptodate,jdbcType=DATE}, 
+      #{flux,jdbcType=VARCHAR}, #{total,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{gameid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.UserJHDX" >
+    insert into user_jhdx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="uptodate != null" >
+        upToDate,
+      </if>
+      <if test="flux != null" >
+        flux,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="gameid != null" >
+        gameId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="uptodate != null" >
+        #{uptodate,jdbcType=DATE},
+      </if>
+      <if test="flux != null" >
+        #{flux,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="gameid != null" >
+        #{gameid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.UserJHDXExample" resultType="java.lang.Integer" >
+    select count(*) from user_jhdx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_jhdx
+    <set >
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uptodate != null" >
+        upToDate = #{record.uptodate,jdbcType=DATE},
+      </if>
+      <if test="record.flux != null" >
+        flux = #{record.flux,jdbcType=VARCHAR},
+      </if>
+      <if test="record.total != null" >
+        total = #{record.total,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameid != null" >
+        gameId = #{record.gameid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_jhdx
+    set userId = #{record.userid,jdbcType=BIGINT},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      upToDate = #{record.uptodate,jdbcType=DATE},
+      flux = #{record.flux,jdbcType=VARCHAR},
+      total = #{record.total,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=VARCHAR},
+      gameId = #{record.gameid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.UserJHDX" >
+    update user_jhdx
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="uptodate != null" >
+        upToDate = #{uptodate,jdbcType=DATE},
+      </if>
+      <if test="flux != null" >
+        flux = #{flux,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="gameid != null" >
+        gameId = #{gameid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.UserJHDX" >
+    update user_jhdx
+    set phone = #{phone,jdbcType=VARCHAR},
+      upToDate = #{uptodate,jdbcType=DATE},
+      flux = #{flux,jdbcType=VARCHAR},
+      total = #{total,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      gameId = #{gameid,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=BIGINT}
+  </update>
+  <!-- 添加抽奖客户List -->
+  <insert id="insertClient" parameterType="list" >
+    insert into user_jhdx 
+    (
+    	userId, phone, 	upToDate, 
+      	flux, 	total,	status,
+      	gameId
+    )
+    values
+	  <foreach collection="list" item="item" index="index" separator="," >
+	  (
+		  #{item.userid,jdbcType=BIGINT}, #{item.phone,jdbcType=VARCHAR}, str_to_date(#{item.uptodate,jdbcType=DATE}, '%Y-%m-%d'), 
+	      #{item.flux,jdbcType=VARCHAR} , #{item.total,jdbcType=INTEGER}, #{item.status,jdbcType=VARCHAR},
+	      #{gameid,jdbcType=VARCHAR}
+      )
+      </foreach>
+  </insert>
+  <!-- 根据GameID,手机号查询最新一次更新的一条数据 -->
+  <select id="queryTheLatestUserInfo" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.UserJHDX" >
+  	SELECT * 
+	FROM user_jhdx 
+	WHERE 
+	upToDate = (
+					SELECT MAX(uptodate) 
+					FROM user_jhdx 
+					WHERE gameId = #{gameid,jdbcType=VARCHAR}
+					AND phone = #{phone,jdbcType=VARCHAR}
+				)
+  </select>
+  <!-- 效验openId是否存在 -->
+  <select id="checkUpOpenID" resultType="int" parameterType="String">
+  	select count(*) from user_phone where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+</mapper>

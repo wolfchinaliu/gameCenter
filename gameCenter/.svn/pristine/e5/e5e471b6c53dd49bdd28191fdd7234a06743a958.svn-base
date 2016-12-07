@@ -1,0 +1,29 @@
+package com.shiliu.game.controller;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.shiliu.game.domain.UserGame;
+import com.shiliu.game.service.IUserGameService;
+
+@Controller
+@RequestMapping("/userGame")
+public class UserGameController {
+	public Logger logger = Logger.getLogger(this.getClass());
+	
+	@Resource
+	private IUserGameService userGameService;
+	
+	@RequestMapping(value="/intoGame")
+	public String into(@RequestParam(value="gameId") String gameId,@RequestParam(value="openId") String openId){
+		if (gameId==null&&openId==null) return "";
+		UserGame userGame = userGameService.selectOpenID(openId, gameId);
+		if(userGame==null) return "";
+		
+		return null;
+	}
+}

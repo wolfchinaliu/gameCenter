@@ -1,0 +1,94 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>用户流量充值界面</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  </head>
+  
+  <body>
+    	<form id="form1" action="${pageContext.request.contextPath}/clientFolw/flowOperator.htm" method="post" onSubmit="return check();" >
+    		<table align="center" >
+    				<tr>
+    					<th align="center" colspan="2" >填写充值用户信息</th>
+    				</tr>
+    				<tr>
+    					<td>lab1:</td>
+    					<td><input id="lab1" type="text" name="lab1" /></td> 
+    				</tr>
+    				<tr>
+    					<td>lab2:</td>
+    					<td><input id="lab2" type="text" name="lab2" /></td>
+    				</tr>
+    				<tr>
+    					<td>lab3:</td>
+    					<td><input id="lab3" type="text" name="lab3" /></td>
+    				</tr>
+    				<tr>
+    					<td><input type="reset" value="重置" /></td>
+    					<td><input id="bt" type="button" value="充值" /></td>
+    				</tr>
+    		</table>
+    	</form>
+  </body>
+    <script type="text/javascript">
+    	function bingPhoneNumber(){
+			parent.bindPhoneNumber();
+		}
+		function recharge(){
+			parent.drawFlow();
+		}
+	  	var trim = function (s) {
+			  return s.replace(/(^\s*)|(\s*$)/g, "");
+			}
+		$("#bt").click(function(){
+			 if(trim(document.getElementById("lab1").value)==""){
+			    alert('请填写lab1的值');
+				 return false;
+			  }
+			  else if(trim(document.getElementById("lab2").value)==""){
+			    alert('请填写lab2的值');
+				 return false;
+			  }else if(trim(document.getElementById("lab3").value)==""){
+			    alert('请填写lab3的值');
+				 return false;
+			  }
+				var lab1 = $("#lab1").val();
+			  	var lab2 = $("#lab2").val();
+			  	var lab3 = $("#lab3").val();
+			  	
+		jQuery.ajax({
+				url:'${pageContext.request.contextPath}/clientFolw/flowOperator.htm',
+				data:{'lab1':lab1,'lab2':lab2,'lab3':lab3},
+				dataType:'json',
+			 	type:'post',
+			 	contentType: "application/x-www-form-urlencoded;charset=utf-8",
+			 	success:function(data){
+		    	 	if(data.code==0){
+		    	 		window.location.href='http://lzhweixin.ittun.com/jwx/son.jsp?code="'+data.code+'"';
+		    	 	}else if(data.code==1){
+		    	 		window.location.href='http://lzhweixin.ittun.com/jwx/son.jsp?code="'+data.code+'"';
+		    	 	}else{
+		    	 		alert("充值失败，失败原因："+data.message);
+		    	 	}
+		        }
+			});
+		});
+	</script> 
+</html>

@@ -1,0 +1,27 @@
+package com.shiliu.game.service.impl;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.shiliu.game.dao.UserJHDXMapper;
+import com.shiliu.game.domain.UserJHDX;
+import com.shiliu.game.service.IUserJHDXService;
+
+@Service
+public class UserJHDXServiceImpl implements IUserJHDXService {
+
+	@Resource
+	private UserJHDXMapper userJHDXMapper;
+	@Override
+	public int insert(UserJHDX record) {
+		
+		return userJHDXMapper.insert(record);
+	}
+	@Override
+	public UserJHDX accordingPhoneQuery(String phone) {
+		
+		return userJHDXMapper.accordingPhoneQuery(phone);
+	}
+
+}

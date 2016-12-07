@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+<classPathEntry location="D:\\DriverPackage\\JDBC\\mysql-connector-java-5.1.38-bin.jar" />
+  <context id="MyBatis3" targetRuntime="MyBatis3" >
+   <!-- <commentGenerator>  
+            <property name="suppressDate" value="true" />  
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>  -->
+  	<commentGenerator>  
+    <!-- 是否去除自动生成的注释 true：是 ： false:否 -->  
+    	<property name="suppressAllComments" value="true" />   
+  	</commentGenerator>
+  <!-- 数据库连接配置 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/gamecenter" userId="root" password="064948" />
+  <!-- model包位置 -->
+    <javaModelGenerator targetPackage="com.shiliu.game.domain" targetProject="gameCenter/src/main/java" >
+    <!-- enableSubPackages:是否让schema作为包的后缀 --> 
+    	<property name="enableSubPackages" value="true" />
+    <!-- 是否自动去除首位空格 -->
+      	<property name="trimStrings" value="true" />
+     </javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.shiliu.game.mapper" targetProject="gameCenter/src/main/resources" />
+    <!-- type = ANNOTATEDMAPPER 为注解形式 -->
+    <javaClientGenerator targetPackage="com.shiliu.game.dao" targetProject="gameCenter/src/main/java" type="XMLMAPPER" />
+    
+    
+     <!-- 
+   <table  tableName="t_cust_prize" domainObjectName="CustomerPrize"/>
+      <columnOverride column="???" property="???" /> 
+    <table  tableName="t_merchant" domainObjectName="Merchant"/>
+    <table  tableName="vote" domainObjectName="Vote"/>
+    <table  tableName="vote_option" domainObjectName="VoteOption"/>
+        <table  tableName="user_vote_log" domainObjectName="UserVoteLog"/>
+        <table  tableName="user_flow_log" domainObjectName="UserFlowLog"/>
+      -->
+        <table  tableName="game_excel" domainObjectName="GameExcel"/>
+   <!--  
+        <table  tableName="game" domainObjectName="Game"/>
+        <table  tableName="game_question" domainObjectName="GameQuestion"/>
+        <table  tableName="question_option" domainObjectName="QuestionOption"/>
+        <table  tableName="game_award_recode" domainObjectName="GameAwardRecode"/>
+     -->
+  </context>
+</generatorConfiguration>

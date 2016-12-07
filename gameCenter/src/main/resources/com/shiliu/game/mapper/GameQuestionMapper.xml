@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.GameQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.GameQuestion" >
+    <id column="question_id" property="questionId" jdbcType="VARCHAR" />
+    <result column="game_id" property="gameId" jdbcType="VARCHAR" />
+    <result column="question_type" property="questionType" jdbcType="SMALLINT" />
+    <result column="question_answer" property="questionAnswer" jdbcType="VARCHAR" />
+    <result column="question_text" property="questionText" jdbcType="VARCHAR" />
+    <result column="sequence" property="sequence" jdbcType="INTEGER" />
+    <result column="question_image" property="questionImage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    question_id, game_id, question_type, question_answer, question_text, sequence, question_image
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.GameQuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from game_question
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from game_question
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.GameQuestionExample" >
+    delete from game_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.GameQuestion" >
+    insert into game_question (question_id, game_id, question_type, 
+      question_answer, question_text, sequence, 
+      question_image)
+    values (#{questionId,jdbcType=VARCHAR}, #{gameId,jdbcType=VARCHAR}, #{questionType,jdbcType=SMALLINT}, 
+      #{questionAnswer,jdbcType=VARCHAR}, #{questionText,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}, 
+      #{questionImage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.GameQuestion" >
+    insert into game_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        question_id,
+      </if>
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="questionType != null" >
+        question_type,
+      </if>
+      <if test="questionAnswer != null" >
+        question_answer,
+      </if>
+      <if test="questionText != null" >
+        question_text,
+      </if>
+      <if test="sequence != null" >
+        sequence,
+      </if>
+      <if test="questionImage != null" >
+        question_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionId != null" >
+        #{questionId,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null" >
+        #{gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="questionType != null" >
+        #{questionType,jdbcType=SMALLINT},
+      </if>
+      <if test="questionAnswer != null" >
+        #{questionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="questionText != null" >
+        #{questionText,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="questionImage != null" >
+        #{questionImage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.GameQuestionExample" resultType="java.lang.Integer" >
+    select count(*) from game_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update game_question
+    <set >
+      <if test="record.questionId != null" >
+        question_id = #{record.questionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameId != null" >
+        game_id = #{record.gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionType != null" >
+        question_type = #{record.questionType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.questionAnswer != null" >
+        question_answer = #{record.questionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questionText != null" >
+        question_text = #{record.questionText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sequence != null" >
+        sequence = #{record.sequence,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionImage != null" >
+        question_image = #{record.questionImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update game_question
+    set question_id = #{record.questionId,jdbcType=VARCHAR},
+      game_id = #{record.gameId,jdbcType=VARCHAR},
+      question_type = #{record.questionType,jdbcType=SMALLINT},
+      question_answer = #{record.questionAnswer,jdbcType=VARCHAR},
+      question_text = #{record.questionText,jdbcType=VARCHAR},
+      sequence = #{record.sequence,jdbcType=INTEGER},
+      question_image = #{record.questionImage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.GameQuestion" >
+    update game_question
+    <set >
+      <if test="gameId != null" >
+        game_id = #{gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="questionType != null" >
+        question_type = #{questionType,jdbcType=SMALLINT},
+      </if>
+      <if test="questionAnswer != null" >
+        question_answer = #{questionAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="questionText != null" >
+        question_text = #{questionText,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        sequence = #{sequence,jdbcType=INTEGER},
+      </if>
+      <if test="questionImage != null" >
+        question_image = #{questionImage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.GameQuestion" >
+    update game_question
+    set game_id = #{gameId,jdbcType=VARCHAR},
+      question_type = #{questionType,jdbcType=SMALLINT},
+      question_answer = #{questionAnswer,jdbcType=VARCHAR},
+      question_text = #{questionText,jdbcType=VARCHAR},
+      sequence = #{sequence,jdbcType=INTEGER},
+      question_image = #{questionImage,jdbcType=VARCHAR}
+    where question_id = #{questionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

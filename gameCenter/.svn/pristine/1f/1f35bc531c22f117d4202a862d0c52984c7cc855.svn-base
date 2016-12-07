@@ -1,0 +1,297 @@
+package com.shiliu.game.utils;
+
+
+
+import java.beans.PropertyDescriptor;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
+/**
+ * Excel 操作工具类 POI
+ * 
+ * @author popl lu
+ * @最后修改时间 2014-6-12 10:23:03
+ * */
+public class ExcelUtil<T> {
+	// 时间的格式
+	private String format;
+
+	public ExcelUtil() {
+		this.format = "yyyy-MM-dd";
+	}
+	/**
+	 * @param format 显示时间的格式*/
+	public ExcelUtil(String format) {
+		this.format = format;
+	}
+
+	/**
+	 * POI 读取Excel操作
+	 * 
+	 * @param clazz
+	 *            数据对象类型
+	 * @param ins
+	 *            读入流
+	 * @param sheetIndex
+	 *            页码
+	 * @param title
+	 *            标题与类属性的对应 key：标题 value：field 为空时默认标题是field
+	 */
+	public List<T> readExcel(Class<T> clazz, InputStream ins, int sheetIndex,
+			Map<String, String> title) throws Exception {
+		// 打开HSSFWorkbook
+		POIFSFileSystem fs = new POIFSFileSystem(ins);
+		HSSFWorkbook wb = new HSSFWorkbook(fs);
+		HSSFSheet sheet = wb.getSheetAt(sheetIndex);
+		List<T> list = new ArrayList<T>();
+
+		// 获取标题
+		HSSFRow titelRow = sheet.getRow(0);
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		if (title != null) {
+			for (int columnIndex = 0; columnIndex < titelRow.getLastCellNum(); columnIndex++) {
+				HSSFCell cell = titelRow.getCell(columnIndex);
+				if (cell != null) {
+					String key = cell.getStringCellValue();
+					String value = title.get(key);
+					if (value == null) {
+						value = key;
+					}
+					map.put(Integer.valueOf(columnIndex), value);
+				}
+			}
+		} else {
+			for (int columnIndex = 0; columnIndex < titelRow.getLastCellNum(); columnIndex++) {
+				HSSFCell cell = titelRow.getCell(columnIndex);
+				if (cell != null) {
+					String key = cell.getStringCellValue();
+					map.put(Integer.valueOf(columnIndex), key);
+				}
+			}
+		}
+		// 获取值
+		for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+			HSSFRow row = sheet.getRow(rowIndex);
+			T obj = clazz.newInstance();
+			for (int columnIndex = 0; columnIndex <= row.getLastCellNum(); columnIndex++) {
+				HSSFCell cell = row.getCell(columnIndex);
+
+				if (cell != null) {
+					String value = null;
+					switch (cell.getCellType()) {
+					case HSSFCell.CELL_TYPE_STRING:
+						value = cell.getStringCellValue();
+						break;
+					case HSSFCell.CELL_TYPE_NUMERIC:
+						if (HSSFDateUtil.isCellDateFormatted(cell)) {
+							Date date = cell.getDateCellValue();
+							if (date != null) {
+								value = new SimpleDateFormat(format)
+										.format(date);
+							} else {
+								value = "";
+							}
+						} else {
+							value = new DecimalFormat("0").format(cell
+									.getNumericCellValue());
+						}
+						break;
+					case HSSFCell.CELL_TYPE_FORMULA:
+						// 导入时如果为公式生成的数据则无值
+						if (!cell.getStringCellValue().equals("")) {
+							value = cell.getStringCellValue();
+						} else {
+							value = cell.getNumericCellValue() + "";
+						}
+						break;
+					case HSSFCell.CELL_TYPE_BLANK:
+						break;
+					case HSSFCell.CELL_TYPE_ERROR:
+						value = "";
+						break;
+					case HSSFCell.CELL_TYPE_BOOLEAN:
+						value = (cell.getBooleanCellValue() == true ? "Y" : "N");
+						break;
+					default:
+						value = "";
+					}
+					Field field = clazz.getDeclaredField(map.get(Integer
+							.valueOf(columnIndex)));
+					Class<?> fieldType = field.getType();
+					Object agge = null;
+					if (fieldType.isAssignableFrom(Integer.class)) {
+						agge = Integer.valueOf(value);
+					} else if (fieldType.isAssignableFrom(Double.class)) {
+						agge = Double.valueOf(value);
+					} else if (fieldType.isAssignableFrom(Float.class)) {
+						agge = Float.valueOf(value);
+					} else if (fieldType.isAssignableFrom(Long.class)) {
+						agge = Long.valueOf(value);
+					} else if (fieldType.isAssignableFrom(Date.class)) {
+						agge = new SimpleDateFormat(format).parse(value);
+					} else if (fieldType.isAssignableFrom(Boolean.class)) {
+						agge = "Y".equals(value) || "1".equals(value);
+					} else if (fieldType.isAssignableFrom(String.class)) {
+						agge = value;
+					}
+					// 个人感觉char跟byte就不用判断了 用这两个类型的很少如果是从数据库用IDE生成的话就不会出现了
+					Method method = clazz.getMethod("set"
+							+ toUpperFirstCase(map.get(Integer
+									.valueOf(columnIndex))), fieldType);
+					method.invoke(obj, agge);
+
+				}
+			}
+			list.add(obj);
+		}
+		return list;
+	}
+
+	/**
+	 *  @ 首字母大写
+	 */
+	public String toUpperFirstCase(String str) {
+		return str.replaceFirst(str.substring(0, 1), str.substring(0, 1)
+				.toUpperCase());
+	}
+
+	/**
+	 * 写文件
+	 * 
+	 * 
+	 * @param data
+	 *            数据源
+	 * @param titel
+	 *            标题和filed名对应 key:field value:标题 为null时表示以field名为标题
+	 * @return 输出流
+	 * @throws Exception
+	 */
+	public OutputStream writeExcel(Collection<T> data, Map<String, String> titel,
+			int sheetIndex, String sheetTitel,Map<String,String> userMap) throws Exception {
+		// 第一步，创建一个webbook，对应一个Excel文件
+		HSSFWorkbook wb = new HSSFWorkbook();
+		// 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
+		if (data != null) {
+			Iterator<T> iterator = data.iterator();
+			Class<?> clazz = iterator.next().getClass();
+			Field[] fields = clazz.getDeclaredFields();
+			HSSFSheet sheet = wb.createSheet(sheetTitel);
+			// 第三步，在sheet中添加表头第0行
+			HSSFRow rowTitle = sheet.createRow(0);
+			// 第四步，创建单元格，并设置值表头 设置表头居中
+			HSSFCellStyle style = wb.createCellStyle();
+			style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
+			if (titel != null) {
+				for (int clolumnIndex = 0; clolumnIndex < fields.length; clolumnIndex++) {
+					HSSFCell cell = rowTitle.createCell(clolumnIndex);
+					String value = titel.get(fields[clolumnIndex].getName());
+					if (value == null)
+						value = fields[clolumnIndex].getName();
+					cell.setCellValue(value);
+					cell.setCellStyle(style);
+				}
+			} else {
+				for (int clolumnIndex = 0; clolumnIndex < fields.length; clolumnIndex++) {
+					HSSFCell cell = rowTitle.createCell(clolumnIndex);
+					cell.setCellValue(fields[clolumnIndex].getName());
+					cell.setCellStyle(style);
+				}
+			}
+
+			// 数据
+			Method[] mds = getGetMethod(clazz);
+			iterator = data.iterator();
+			for (int rowIndex = 0; rowIndex < data.size(); rowIndex++) {
+				Object object = iterator.next();
+				HSSFRow row = sheet.createRow(rowIndex + 1);
+				for (int clolumnIndex = 0; clolumnIndex < fields.length; clolumnIndex++) {
+					HSSFCell cell = row.createCell(clolumnIndex);
+					Object obj = mds[clolumnIndex].invoke(object);
+					if(clolumnIndex==fields.length-1){
+						obj=userMap.get(obj.toString());
+					}
+						
+					if (obj != null) {
+						if (obj instanceof Date) {
+							// obj = new
+							// SimpleDateFormat("yyyy-MM-dd").format((Date)obj);
+							cell.setCellValue(new SimpleDateFormat(format)
+									.format((Date) obj));
+						} else if (obj instanceof Integer
+								|| obj instanceof Double
+								|| obj instanceof Float || obj instanceof Long) {
+							cell.setCellValue(Double
+									.parseDouble(obj.toString()));
+						} else if (obj instanceof Boolean) {
+							cell.setCellValue((Boolean) obj);
+						} else {
+							cell.setCellValue(obj.toString());
+						}
+					} else {
+						cell.setCellValue("");
+					}
+					cell.setCellStyle(style);
+				}
+			}
+
+		}
+		OutputStream out = new ByteArrayOutputStream();
+		wb.write(out);
+		return out;
+	}
+
+	// 获取所有字段的get方法
+	public Method[] getGetMethod(Class<?> clazz) throws Exception {
+		Field[] fields = clazz.getDeclaredFields();
+		Method[] methods = new Method[fields.clone().length];
+		for (int i = 0; i < fields.length; i++) {
+			PropertyDescriptor pd = new PropertyDescriptor(fields[i].getName(),
+					clazz);
+			methods[i] = pd.getReadMethod();
+		}
+		return methods;
+	}
+
+	public static void main(String[] arg) throws Exception {
+		// ExcelUtil eu = new ExcelUtil("yyyy-mm-dd");
+		// InputStream fis = new FileInputStream("D:/temp/123.xls");
+		// List list = readExcel(
+		// User.class,fis,0,null);
+		//		
+		// for (int i = 0; i < list.size(); i++) {
+		// User user = (User) list.get(i);
+		// System.out.println(user.getId() + "\t" + user.getName() + "\t"
+		// + user.getBirthday() + "\t" + user.getAge() + "\t"
+		// + user.getSex() + "\t" + user.getEmail() + "\t");
+		// }
+		// OutputStream ous = new FileOutputStream("E:/test/user.xls");
+		// Map<String,String> map = new HashMap<String, String>();
+		// map.put("id", "学号");
+		// map.put("name", "名字");
+		// map.put("sex", "性别");
+		// map.put("age", "年龄");
+		// map.put("email", "邮箱");
+		// map.put("birthday", "生日");
+		// writeExcel(ous, list,map,0,"学生");
+	}
+}

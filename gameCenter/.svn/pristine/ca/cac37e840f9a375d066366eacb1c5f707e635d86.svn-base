@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.VoteOptionMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.VoteOption" >
+    <id column="option_id" property="optionId" jdbcType="VARCHAR" />
+    <result column="vote_id" property="voteId" jdbcType="VARCHAR" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="vote_num" property="voteNum" jdbcType="INTEGER" />
+    <result column="rank_num" property="rankNum" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    option_id, vote_id, text, img_url, vote_num, rank_num, order_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.VoteOptionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vote_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vote_option
+    where option_id = #{optionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vote_option
+    where option_id = #{optionId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.VoteOptionExample" >
+    delete from vote_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.VoteOption" >
+    insert into vote_option (option_id, vote_id, text, 
+      img_url, vote_num, rank_num, 
+      order_id)
+    values (#{optionId,jdbcType=VARCHAR}, #{voteId,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{voteNum,jdbcType=INTEGER}, #{rankNum,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.VoteOption" >
+    insert into vote_option
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="optionId != null" >
+        option_id,
+      </if>
+      <if test="voteId != null" >
+        vote_id,
+      </if>
+      <if test="text != null" >
+        text,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="voteNum != null" >
+        vote_num,
+      </if>
+      <if test="rankNum != null" >
+        rank_num,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="optionId != null" >
+        #{optionId,jdbcType=VARCHAR},
+      </if>
+      <if test="voteId != null" >
+        #{voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="voteNum != null" >
+        #{voteNum,jdbcType=INTEGER},
+      </if>
+      <if test="rankNum != null" >
+        #{rankNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.VoteOptionExample" resultType="java.lang.Integer" >
+    select count(*) from vote_option
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vote_option
+    <set >
+      <if test="record.optionId != null" >
+        option_id = #{record.optionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteId != null" >
+        vote_id = #{record.voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.text != null" >
+        text = #{record.text,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null" >
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteNum != null" >
+        vote_num = #{record.voteNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.rankNum != null" >
+        rank_num = #{record.rankNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vote_option
+    set option_id = #{record.optionId,jdbcType=VARCHAR},
+      vote_id = #{record.voteId,jdbcType=VARCHAR},
+      text = #{record.text,jdbcType=VARCHAR},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      vote_num = #{record.voteNum,jdbcType=INTEGER},
+      rank_num = #{record.rankNum,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.VoteOption" >
+    update vote_option
+    <set >
+      <if test="voteId != null" >
+        vote_id = #{voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="voteNum != null" >
+        vote_num = #{voteNum,jdbcType=INTEGER},
+      </if>
+      <if test="rankNum != null" >
+        rank_num = #{rankNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where option_id = #{optionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.VoteOption" >
+    update vote_option
+    set vote_id = #{voteId,jdbcType=VARCHAR},
+      text = #{text,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      vote_num = #{voteNum,jdbcType=INTEGER},
+      rank_num = #{rankNum,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=INTEGER}
+    where option_id = #{optionId,jdbcType=VARCHAR}
+  </update>
+  
+    <insert id="insertList" parameterType="java.util.List" >
+    insert into vote_option (option_id, vote_id, text, 
+      img_url, vote_num, rank_num,order_id) values
+      <foreach collection="list" item="item" index="index" separator="," >  
+    	 (#{item.optionId,jdbcType=VARCHAR}, #{item.voteId,jdbcType=VARCHAR}, #{item.text,jdbcType=VARCHAR},#{item.imgUrl,jdbcType=VARCHAR}, #{item.voteNum,jdbcType=INTEGER}, #{item.rankNum,jdbcType=INTEGER},#{item.orderId,jdbcType=INTEGER})
+       </foreach> 
+  </insert>
+  <update id="updateVoteNum" parameterType="java.util.List">
+  update vote_option 
+  set vote_num = case option_id
+    <foreach collection="list" item="item" index="index" separator=" " >  
+    when #{item} then vote_num +1
+    </foreach>
+    end
+    where option_id in (
+     <foreach collection="list" item="item" index="index" separator="," > 
+     #{item}
+     </foreach>
+    )
+  </update>
+</mapper>

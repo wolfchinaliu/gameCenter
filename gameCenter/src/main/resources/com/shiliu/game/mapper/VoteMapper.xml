@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.VoteMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.Vote" >
+    <id column="vote_id" property="voteId" jdbcType="VARCHAR" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="vote_name" property="voteName" jdbcType="VARCHAR" />
+    <result column="flow_type" property="flowType" jdbcType="VARCHAR" />
+    <result column="frequency" property="frequency" jdbcType="INTEGER" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="vote_Flow" property="voteFlow" jdbcType="INTEGER" />
+    <result column="win_rule" property="winRule" jdbcType="VARCHAR" />
+    <result column="vote_end_time" property="voteEndTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="vote_num" property="voteNum" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    vote_id, text, vote_name, flow_type, frequency, times, type, vote_Flow, win_rule, 
+    vote_end_time, create_time, vote_num, img_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.VoteExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vote
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vote
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vote
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.VoteExample" >
+    delete from vote
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.Vote" >
+    insert into vote (vote_id, text, vote_name, 
+      flow_type, frequency, times, 
+      type, vote_Flow, win_rule, 
+      vote_end_time, create_time, vote_num, 
+      img_url)
+    values (#{voteId,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, #{voteName,jdbcType=VARCHAR}, 
+      #{flowType,jdbcType=VARCHAR}, #{frequency,jdbcType=INTEGER}, #{times,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{voteFlow,jdbcType=INTEGER}, #{winRule,jdbcType=VARCHAR}, 
+      #{voteEndTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{voteNum,jdbcType=INTEGER}, 
+      #{imgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.Vote" >
+    insert into vote
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="voteId != null" >
+        vote_id,
+      </if>
+      <if test="text != null" >
+        text,
+      </if>
+      <if test="voteName != null" >
+        vote_name,
+      </if>
+      <if test="flowType != null" >
+        flow_type,
+      </if>
+      <if test="frequency != null" >
+        frequency,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="voteFlow != null" >
+        vote_Flow,
+      </if>
+      <if test="winRule != null" >
+        win_rule,
+      </if>
+      <if test="voteEndTime != null" >
+        vote_end_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="voteNum != null" >
+        vote_num,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="voteId != null" >
+        #{voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="voteName != null" >
+        #{voteName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="voteFlow != null" >
+        #{voteFlow,jdbcType=INTEGER},
+      </if>
+      <if test="winRule != null" >
+        #{winRule,jdbcType=VARCHAR},
+      </if>
+      <if test="voteEndTime != null" >
+        #{voteEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voteNum != null" >
+        #{voteNum,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.VoteExample" resultType="java.lang.Integer" >
+    select count(*) from vote
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vote
+    <set >
+      <if test="record.voteId != null" >
+        vote_id = #{record.voteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.text != null" >
+        text = #{record.text,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteName != null" >
+        vote_name = #{record.voteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowType != null" >
+        flow_type = #{record.flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frequency != null" >
+        frequency = #{record.frequency,jdbcType=INTEGER},
+      </if>
+      <if test="record.times != null" >
+        times = #{record.times,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteFlow != null" >
+        vote_Flow = #{record.voteFlow,jdbcType=INTEGER},
+      </if>
+      <if test="record.winRule != null" >
+        win_rule = #{record.winRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voteEndTime != null" >
+        vote_end_time = #{record.voteEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.voteNum != null" >
+        vote_num = #{record.voteNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgUrl != null" >
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vote
+    set vote_id = #{record.voteId,jdbcType=VARCHAR},
+      text = #{record.text,jdbcType=VARCHAR},
+      vote_name = #{record.voteName,jdbcType=VARCHAR},
+      flow_type = #{record.flowType,jdbcType=VARCHAR},
+      frequency = #{record.frequency,jdbcType=INTEGER},
+      times = #{record.times,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      vote_Flow = #{record.voteFlow,jdbcType=INTEGER},
+      win_rule = #{record.winRule,jdbcType=VARCHAR},
+      vote_end_time = #{record.voteEndTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      vote_num = #{record.voteNum,jdbcType=INTEGER},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.Vote" >
+    update vote
+    <set >
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="voteName != null" >
+        vote_name = #{voteName,jdbcType=VARCHAR},
+      </if>
+      <if test="flowType != null" >
+        flow_type = #{flowType,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null" >
+        frequency = #{frequency,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="voteFlow != null" >
+        vote_Flow = #{voteFlow,jdbcType=INTEGER},
+      </if>
+      <if test="winRule != null" >
+        win_rule = #{winRule,jdbcType=VARCHAR},
+      </if>
+      <if test="voteEndTime != null" >
+        vote_end_time = #{voteEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voteNum != null" >
+        vote_num = #{voteNum,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.Vote" >
+    update vote
+    set text = #{text,jdbcType=VARCHAR},
+      vote_name = #{voteName,jdbcType=VARCHAR},
+      flow_type = #{flowType,jdbcType=VARCHAR},
+      frequency = #{frequency,jdbcType=INTEGER},
+      times = #{times,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      vote_Flow = #{voteFlow,jdbcType=INTEGER},
+      win_rule = #{winRule,jdbcType=VARCHAR},
+      vote_end_time = #{voteEndTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      vote_num = #{voteNum,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR}
+    where vote_id = #{voteId,jdbcType=VARCHAR}
+  </update>
+</mapper>

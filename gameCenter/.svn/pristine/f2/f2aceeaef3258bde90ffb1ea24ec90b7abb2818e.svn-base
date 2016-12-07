@@ -1,0 +1,55 @@
+package com.shiliu.game.domain;
+
+import java.util.Date;
+
+public class UserJHDX {
+    private Long userid;
+
+    private String phone;
+
+    private String expirydatc;
+
+    private String gameid;
+
+    private String flux;
+
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getExpirydatc() {
+        return expirydatc;
+    }
+
+    public void setExpirydatc(String expirydatc) {
+        this.expirydatc = expirydatc;
+    }
+
+    public String getGameid() {
+        return gameid;
+    }
+
+    public void setGameid(String gameid) {
+        this.gameid = gameid == null ? null : gameid.trim();
+    }
+
+    public String getFlux() {
+        return flux;
+    }
+
+    public void setFlux(String flux) {
+        this.flux = flux == null ? null : flux.trim();
+    }
+}

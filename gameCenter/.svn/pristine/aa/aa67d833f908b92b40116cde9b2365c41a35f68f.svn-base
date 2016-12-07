@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.UserGameMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.UserGame" >
+    <id column="user_game_id" property="userGameId" jdbcType="BIGINT" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="game_id" property="gameId" jdbcType="VARCHAR" />
+    <result column="flow_num" property="flowNum" jdbcType="INTEGER" />
+    <result column="play_time" property="playTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="play_times" property="playTimes" jdbcType="INTEGER" />
+    <result column="total_times" property="totalTimes" jdbcType="INTEGER" />
+    <result column="holen_flow" property="holenFlow" jdbcType="INTEGER" />
+    <result column="max_score" property="maxScore" jdbcType="INTEGER" />
+    <result column="last_cycle_score" property="lastCycleScore" jdbcType="INTEGER" />
+    <result column="current_score" property="currentScore" jdbcType="INTEGER" />
+    <result column="is_update" property="isUpdate" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_game_id, openid, game_id, flow_num, play_time, create_time, play_times, total_times, 
+    holen_flow, max_score, last_cycle_score, current_score, is_update
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.UserGameExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_game
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_game
+    where user_game_id = #{userGameId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_game
+    where user_game_id = #{userGameId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.UserGameExample" >
+    delete from user_game
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.UserGame" >
+    insert into user_game (user_game_id, openid, game_id, 
+      flow_num, play_time, create_time, 
+      play_times, total_times, holen_flow, 
+      max_score, last_cycle_score, current_score, 
+      is_update)
+    values (#{userGameId,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{gameId,jdbcType=VARCHAR}, 
+      #{flowNum,jdbcType=INTEGER}, #{playTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{playTimes,jdbcType=INTEGER}, #{totalTimes,jdbcType=INTEGER}, #{holenFlow,jdbcType=INTEGER}, 
+      #{maxScore,jdbcType=INTEGER}, #{lastCycleScore,jdbcType=INTEGER}, #{currentScore,jdbcType=INTEGER}, 
+      #{isUpdate,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.UserGame" >
+    insert into user_game
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userGameId != null" >
+        user_game_id,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="flowNum != null" >
+        flow_num,
+      </if>
+      <if test="playTime != null" >
+        play_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="playTimes != null" >
+        play_times,
+      </if>
+      <if test="totalTimes != null" >
+        total_times,
+      </if>
+      <if test="holenFlow != null" >
+        holen_flow,
+      </if>
+      <if test="maxScore != null" >
+        max_score,
+      </if>
+      <if test="lastCycleScore != null" >
+        last_cycle_score,
+      </if>
+      <if test="currentScore != null" >
+        current_score,
+      </if>
+      <if test="isUpdate != null" >
+        is_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userGameId != null" >
+        #{userGameId,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null" >
+        #{gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNum != null" >
+        #{flowNum,jdbcType=INTEGER},
+      </if>
+      <if test="playTime != null" >
+        #{playTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playTimes != null" >
+        #{playTimes,jdbcType=INTEGER},
+      </if>
+      <if test="totalTimes != null" >
+        #{totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="holenFlow != null" >
+        #{holenFlow,jdbcType=INTEGER},
+      </if>
+      <if test="maxScore != null" >
+        #{maxScore,jdbcType=INTEGER},
+      </if>
+      <if test="lastCycleScore != null" >
+        #{lastCycleScore,jdbcType=INTEGER},
+      </if>
+      <if test="currentScore != null" >
+        #{currentScore,jdbcType=INTEGER},
+      </if>
+      <if test="isUpdate != null" >
+        #{isUpdate,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.UserGameExample" resultType="java.lang.Integer" >
+    select count(*) from user_game
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_game
+    <set >
+      <if test="record.userGameId != null" >
+        user_game_id = #{record.userGameId,jdbcType=BIGINT},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameId != null" >
+        game_id = #{record.gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowNum != null" >
+        flow_num = #{record.flowNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.playTime != null" >
+        play_time = #{record.playTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.playTimes != null" >
+        play_times = #{record.playTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalTimes != null" >
+        total_times = #{record.totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.holenFlow != null" >
+        holen_flow = #{record.holenFlow,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxScore != null" >
+        max_score = #{record.maxScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastCycleScore != null" >
+        last_cycle_score = #{record.lastCycleScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentScore != null" >
+        current_score = #{record.currentScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUpdate != null" >
+        is_update = #{record.isUpdate,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_game
+    set user_game_id = #{record.userGameId,jdbcType=BIGINT},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      game_id = #{record.gameId,jdbcType=VARCHAR},
+      flow_num = #{record.flowNum,jdbcType=INTEGER},
+      play_time = #{record.playTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      play_times = #{record.playTimes,jdbcType=INTEGER},
+      total_times = #{record.totalTimes,jdbcType=INTEGER},
+      holen_flow = #{record.holenFlow,jdbcType=INTEGER},
+      max_score = #{record.maxScore,jdbcType=INTEGER},
+      last_cycle_score = #{record.lastCycleScore,jdbcType=INTEGER},
+      current_score = #{record.currentScore,jdbcType=INTEGER},
+      is_update = #{record.isUpdate,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.UserGame" >
+    update user_game
+    <set >
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null" >
+        game_id = #{gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="flowNum != null" >
+        flow_num = #{flowNum,jdbcType=INTEGER},
+      </if>
+      <if test="playTime != null" >
+        play_time = #{playTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="playTimes != null" >
+        play_times = #{playTimes,jdbcType=INTEGER},
+      </if>
+      <if test="totalTimes != null" >
+        total_times = #{totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="holenFlow != null" >
+        holen_flow = #{holenFlow,jdbcType=INTEGER},
+      </if>
+      <if test="maxScore != null" >
+        max_score = #{maxScore,jdbcType=INTEGER},
+      </if>
+      <if test="lastCycleScore != null" >
+        last_cycle_score = #{lastCycleScore,jdbcType=INTEGER},
+      </if>
+      <if test="currentScore != null" >
+        current_score = #{currentScore,jdbcType=INTEGER},
+      </if>
+      <if test="isUpdate != null" >
+        is_update = #{isUpdate,jdbcType=BIT},
+      </if>
+    </set>
+    where user_game_id = #{userGameId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.UserGame" >
+    update user_game
+    set openid = #{openid,jdbcType=VARCHAR},
+      game_id = #{gameId,jdbcType=VARCHAR},
+      flow_num = #{flowNum,jdbcType=INTEGER},
+      play_time = #{playTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      play_times = #{playTimes,jdbcType=INTEGER},
+      total_times = #{totalTimes,jdbcType=INTEGER},
+      holen_flow = #{holenFlow,jdbcType=INTEGER},
+      max_score = #{maxScore,jdbcType=INTEGER},
+      last_cycle_score = #{lastCycleScore,jdbcType=INTEGER},
+      current_score = #{currentScore,jdbcType=INTEGER},
+      is_update = #{isUpdate,jdbcType=BIT}
+    where user_game_id = #{userGameId,jdbcType=BIGINT}
+  </update>
+   <select id="selectByGameIdAndOpenId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_game
+    where game_id = #{gameId,jdbcType=VARCHAR} and openid = #{openId,jdbcType=VARCHAR}
+  </select>
+</mapper>

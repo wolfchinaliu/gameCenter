@@ -1,0 +1,10 @@
+-- 白名单表
+CREATE TABLE `user_jhdx` (
+  `userId` bigint(20) NOT NULL DEFAULT '0' COMMENT '游戏ID',
+  `phone` varchar(20) DEFAULT NULL COMMENT '手机号码',
+  `expiryDatc` date DEFAULT NULL COMMENT '截止日期',
+  `gameId` varchar(255) DEFAULT NULL COMMENT '游戏ID',
+  `flux` varchar(20) DEFAULT NULL COMMENT '流量',
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

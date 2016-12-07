@@ -1,0 +1,39 @@
+package com.shiliu.game.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.shiliu.game.dao.UserRecordMapper;
+import com.shiliu.game.domain.UserRecord;
+import com.shiliu.game.service.IUserRecordService;
+
+/**
+ * 用户记录service
+ * @author lzh
+ * @version 1.0
+ */
+
+@Service
+public class UserRecordServiceImpl implements IUserRecordService{
+	
+	@Resource 
+	private UserRecordMapper userRecordMapper;
+	@Override
+	public List<UserRecord> selectAll() {
+		return userRecordMapper.selectAll();
+	}
+
+	@Override
+	public List<UserRecord> selectAward() {
+		return userRecordMapper.selectAward();
+	}
+
+	@Override
+	public int insertSelective(UserRecord userRecord) {
+		return userRecordMapper.insertSelective(userRecord);
+	}
+
+}

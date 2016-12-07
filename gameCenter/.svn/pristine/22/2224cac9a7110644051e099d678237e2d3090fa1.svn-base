@@ -1,0 +1,38 @@
+package com.shiliu.game.dao;
+
+import com.shiliu.game.domain.UserJHDX;
+import com.shiliu.game.domain.UserJHDXExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+/**
+ * 金华电信用户接口类
+ * @author wkr
+ * @Date 2016-11-30 10:25
+ *
+ */
+public interface UserJHDXMapper {
+    int countByExample(UserJHDXExample example);
+
+    int deleteByExample(UserJHDXExample example);
+
+    int deleteByPrimaryKey(Long userid);
+
+    int insert(UserJHDX record);
+
+    int insertSelective(UserJHDX record);
+
+    List<UserJHDX> selectByExample(UserJHDXExample example);
+
+    UserJHDX selectByPrimaryKey(Long userid);
+
+    int updateByExampleSelective(@Param("record") UserJHDX record, @Param("example") UserJHDXExample example);
+
+    int updateByExample(@Param("record") UserJHDX record, @Param("example") UserJHDXExample example);
+
+    int updateByPrimaryKeySelective(UserJHDX record);
+
+    int updateByPrimaryKey(UserJHDX record);
+    
+    /**根据手机号查询 */
+    UserJHDX accordingPhoneQuery(String phone);
+}

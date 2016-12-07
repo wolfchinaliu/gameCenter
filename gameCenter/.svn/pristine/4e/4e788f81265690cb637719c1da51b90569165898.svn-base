@@ -1,0 +1,186 @@
+package com.shiliu.game.service.impl;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.shiliu.game.common.FlowOperator;
+import com.shiliu.game.dao.UserGameMapper;
+import com.shiliu.game.dao.UserVoteLogMapper;
+import com.shiliu.game.dao.VoteMapper;
+import com.shiliu.game.dao.VoteOptionMapper;
+import com.shiliu.game.domain.UserGame;
+import com.shiliu.game.domain.UserVoteLog;
+import com.shiliu.game.domain.Vote;
+import com.shiliu.game.domain.VoteOption;
+import com.shiliu.game.domain.VoteOptionExample;
+import com.shiliu.game.domain.bean.FlowResult;
+import com.shiliu.game.service.IVoteService;
+import com.shiliu.game.utils.DateUtils;
+import com.shiliu.game.utils.LongIdWorker;
+import com.shiliu.game.utils.StringUtils;
+
+@Service
+public class VoteServiceImpl implements IVoteService {
+
+	@Resource
+	private VoteMapper voteMapper;
+	@Resource
+	private VoteOptionMapper voteOptionMapper;
+	@Resource
+	private UserGameMapper userGameMapper;
+	@Resource
+	private UserVoteLogMapper userVoteLogMapper;
+	
+	@Override
+	public Vote getVoteForId(String gameId) {
+		return voteMapper.selectByPrimaryKey(gameId);
+	}
+	@Override
+	public int saveVote(Vote vote) {
+		if(StringUtils.isNULL(vote.getVoteId()))
+			return 0;
+		Vote temp = voteMapper.selectByPrimaryKey(vote.getVoteId());
+		if(temp == null){
+			vote.setCreateTime(new Date());
+			return voteMapper.insert(vote);
+		}
+		return voteMapper.updateByPrimaryKeySelective(vote);
+	}
+	@Override
+	public List<VoteOption> getVoteOption(String gameId) {
+		VoteOptionExample example = new VoteOptionExample();
+		example.createCriteria().andVoteIdEqualTo(gameId);
+		example.setOrderByClause("order_id , vote_num");
+		return voteOptionMapper.selectByExample(example);
+	}
+	@Override
+	public int saveVoteOptionList(List<VoteOption> list) {
+		if(list == null || list.get(0) == null)return 0;
+		String voteId = list.get(0).getVoteId();
+		VoteOptionExample example = new VoteOptionExample();
+		example.createCriteria().andVoteIdEqualTo(voteId);
+		voteOptionMapper.deleteByExample(example);
+		return voteOptionMapper.insertList(list);
+	}
+	@Override
+	public int saveVoteOption(VoteOption voteOption) {
+		if(voteOption == null) return 0;
+		if(StringUtils.isNULL(voteOption.getOptionId())){
+			voteOption.setOptionId(StringUtils.getUUID());
+			voteOption.setVoteNum(0);
+			voteOption.setRankNum(0);
+			return voteOptionMapper.insert(voteOption);
+		}
+		if(voteOptionMapper.selectByPrimaryKey(voteOption.getOptionId()) == null)
+			return 0;
+		return voteOptionMapper.updateByPrimaryKeySelective(voteOption);
+	}
+	
+	public int insertVoteOption(VoteOption voteOption){
+		voteOption.setRankNum(0);
+		return voteOptionMapper.insert(voteOption);
+	}
+	
+	public int updateVoteOption(VoteOption voteOption){
+		return voteOptionMapper.updateByPrimaryKeySelective(voteOption);
+	}
+	public int updateVoteNum(String optinIds){
+		String[] ids = optinIds.split(",");
+		List<String> list = Arrays.asList(ids);
+		return voteOptionMapper.updateVoteNum(list);
+	}
+	@Override
+	public UserGame getUserGame(String gameId, String openId,int frequency,int evenTimes) {
+		UserGame userGame = userGameMapper.selectByGameIdAndOpenId(gameId,openId);
+		if(userGame == null){
+			userGame = new UserGame();
+			userGame.setUserGameId(LongIdWorker.getDataId() );
+			userGame.setGameId(gameId);
+			userGame.setCreateTime(new Date());
+			userGame.setOpenid(openId);
+			userGame.setPlayTimes(0);
+			userGame.setTotalTimes(evenTimes);
+			userGame.setHolenFlow(0);
+			userGame.setFlowNum(0);
+			userGame.setPlayTime(new Date());
+			userGameMapper.insertSelective(userGame);
+		return userGame;
+		}
+		if(userGame.getPlayTimes() > 0 ){
+			if(frequency == 1){
+				if(! DateUtils.isNextDay(userGame.getPlayTime()))
+					return userGame;
+			}else if(frequency == 2){
+				if(! DateUtils.isNextWeek(userGame.getPlayTime()))
+					return userGame;
+			}else if(frequency == 3){
+				if(! DateUtils.isNextMonth(userGame.getPlayTime()))
+					return userGame;
+			}else{
+				return userGame;
+			}
+			userGame.setPlayTime(new Date());
+			userGame.setPlayTimes(0);
+			userGame.setTotalTimes(evenTimes);
+			userGameMapper.updateByPrimaryKeySelective(userGame);
+		}
+		return userGame;
+	}
+	@Override
+	public Map<String,String> subSelectVote(Long userGameId,String voteId, String openid, String options) {
+		Map<String,String> map = new HashMap<String, String>();
+		//先判断是否还能再投票
+		Vote vote = getVoteForId(voteId);
+		UserGame userGame = userGameMapper.selectByPrimaryKey(userGameId);
+		if(vote.getTimes() != 0 && userGame.getTotalTimes() <= userGame.getPlayTimes()){
+			map.put("code", "0");
+			map.put("message", "以超过最大次数");
+			return map;
+		}
+		//跟新投票数
+		updateVoteNum(options);
+		//更新新用户游戏流量
+		userGame.setFlowNum(userGame.getFlowNum()+vote.getVoteFlow());
+		userGame.setPlayTimes(userGame.getPlayTimes()+1);
+		userGameMapper.updateByPrimaryKeySelective(userGame);
+		//增加记录
+		UserVoteLog userVoteLog = new UserVoteLog();
+		userVoteLog.setCreateTime(new Date());
+		userVoteLog.setVoteId(voteId);
+		userVoteLog.setOpenid(openid);
+		userVoteLog.setOptionIds(options);
+		userVoteLogMapper.insert(userVoteLog);
+		//领取流量
+		FlowResult rutMap = FlowOperator.hlenFlow(voteId, vote.getVoteFlow().toString(), openid);
+		switch (rutMap.getCode()) {
+		case 0:
+			map.put("code", "0");
+			break;
+		case 1:
+			map.put("code", "1");
+			break;
+		case 2:
+			map.put("code", "2");
+			break;
+
+		default:
+			break;
+		}
+			
+		//if()
+		//map.put("code", "1");
+		return map;
+	}
+	@Override
+	public void deleteOptions(String optionId) {
+		voteOptionMapper.deleteByPrimaryKey(optionId);
+		
+	}
+}

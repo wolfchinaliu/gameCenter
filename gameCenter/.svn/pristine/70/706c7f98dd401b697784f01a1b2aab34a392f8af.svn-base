@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.GameMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.Game" >
+    <id column="game_id" property="gameId" jdbcType="VARCHAR" />
+    <result column="game_name" property="gameName" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="game_rule" property="gameRule" jdbcType="VARCHAR" />
+    <result column="game_type" property="gameType" jdbcType="INTEGER" />
+    <result column="flow_type" property="flowType" jdbcType="SMALLINT" />
+    <result column="frequency" property="frequency" jdbcType="SMALLINT" />
+    <result column="total_times" property="totalTimes" jdbcType="INTEGER" />
+    <result column="even_times" property="evenTimes" jdbcType="INTEGER" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="image_url1" property="imageUrl1" jdbcType="VARCHAR" />
+    <result column="image_url2" property="imageUrl2" jdbcType="VARCHAR" />
+    <result column="image_url3" property="imageUrl3" jdbcType="VARCHAR" />
+    <result column="end_times" property="endTimes" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    game_id, game_name, description, game_rule, game_type, flow_type, frequency, total_times, 
+    even_times, creat_time, image_url1, image_url2, image_url3, end_times
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.GameExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from game
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from game
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.GameExample" >
+    delete from game
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.Game" >
+    insert into game (game_id, game_name, description, 
+      game_rule, game_type, flow_type, 
+      frequency, total_times, even_times, 
+      creat_time, image_url1, image_url2, 
+      image_url3, end_times)
+    values (#{gameId,jdbcType=VARCHAR}, #{gameName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{gameRule,jdbcType=VARCHAR}, #{gameType,jdbcType=INTEGER}, #{flowType,jdbcType=SMALLINT}, 
+      #{frequency,jdbcType=SMALLINT}, #{totalTimes,jdbcType=INTEGER}, #{evenTimes,jdbcType=INTEGER}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{imageUrl1,jdbcType=VARCHAR}, #{imageUrl2,jdbcType=VARCHAR}, 
+      #{imageUrl3,jdbcType=VARCHAR}, #{endTimes,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.Game" >
+    insert into game
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gameId != null" >
+        game_id,
+      </if>
+      <if test="gameName != null" >
+        game_name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="gameRule != null" >
+        game_rule,
+      </if>
+      <if test="gameType != null" >
+        game_type,
+      </if>
+      <if test="flowType != null" >
+        flow_type,
+      </if>
+      <if test="frequency != null" >
+        frequency,
+      </if>
+      <if test="totalTimes != null" >
+        total_times,
+      </if>
+      <if test="evenTimes != null" >
+        even_times,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="imageUrl1 != null" >
+        image_url1,
+      </if>
+      <if test="imageUrl2 != null" >
+        image_url2,
+      </if>
+      <if test="imageUrl3 != null" >
+        image_url3,
+      </if>
+      <if test="endTimes != null" >
+        end_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gameId != null" >
+        #{gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null" >
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gameRule != null" >
+        #{gameRule,jdbcType=VARCHAR},
+      </if>
+      <if test="gameType != null" >
+        #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="flowType != null" >
+        #{flowType,jdbcType=SMALLINT},
+      </if>
+      <if test="frequency != null" >
+        #{frequency,jdbcType=SMALLINT},
+      </if>
+      <if test="totalTimes != null" >
+        #{totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="evenTimes != null" >
+        #{evenTimes,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl1 != null" >
+        #{imageUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl2 != null" >
+        #{imageUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl3 != null" >
+        #{imageUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="endTimes != null" >
+        #{endTimes,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.GameExample" resultType="java.lang.Integer" >
+    select count(*) from game
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update game
+    <set >
+      <if test="record.gameId != null" >
+        game_id = #{record.gameId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameName != null" >
+        game_name = #{record.gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameRule != null" >
+        game_rule = #{record.gameRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameType != null" >
+        game_type = #{record.gameType,jdbcType=INTEGER},
+      </if>
+      <if test="record.flowType != null" >
+        flow_type = #{record.flowType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.frequency != null" >
+        frequency = #{record.frequency,jdbcType=SMALLINT},
+      </if>
+      <if test="record.totalTimes != null" >
+        total_times = #{record.totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.evenTimes != null" >
+        even_times = #{record.evenTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.imageUrl1 != null" >
+        image_url1 = #{record.imageUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageUrl2 != null" >
+        image_url2 = #{record.imageUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageUrl3 != null" >
+        image_url3 = #{record.imageUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTimes != null" >
+        end_times = #{record.endTimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update game
+    set game_id = #{record.gameId,jdbcType=VARCHAR},
+      game_name = #{record.gameName,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      game_rule = #{record.gameRule,jdbcType=VARCHAR},
+      game_type = #{record.gameType,jdbcType=INTEGER},
+      flow_type = #{record.flowType,jdbcType=SMALLINT},
+      frequency = #{record.frequency,jdbcType=SMALLINT},
+      total_times = #{record.totalTimes,jdbcType=INTEGER},
+      even_times = #{record.evenTimes,jdbcType=INTEGER},
+      creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      image_url1 = #{record.imageUrl1,jdbcType=VARCHAR},
+      image_url2 = #{record.imageUrl2,jdbcType=VARCHAR},
+      image_url3 = #{record.imageUrl3,jdbcType=VARCHAR},
+      end_times = #{record.endTimes,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.Game" >
+    update game
+    <set >
+      <if test="gameName != null" >
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gameRule != null" >
+        game_rule = #{gameRule,jdbcType=VARCHAR},
+      </if>
+      <if test="gameType != null" >
+        game_type = #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="flowType != null" >
+        flow_type = #{flowType,jdbcType=SMALLINT},
+      </if>
+      <if test="frequency != null" >
+        frequency = #{frequency,jdbcType=SMALLINT},
+      </if>
+      <if test="totalTimes != null" >
+        total_times = #{totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="evenTimes != null" >
+        even_times = #{evenTimes,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl1 != null" >
+        image_url1 = #{imageUrl1,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl2 != null" >
+        image_url2 = #{imageUrl2,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl3 != null" >
+        image_url3 = #{imageUrl3,jdbcType=VARCHAR},
+      </if>
+      <if test="endTimes != null" >
+        end_times = #{endTimes,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.Game" >
+    update game
+    set game_name = #{gameName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      game_rule = #{gameRule,jdbcType=VARCHAR},
+      game_type = #{gameType,jdbcType=INTEGER},
+      flow_type = #{flowType,jdbcType=SMALLINT},
+      frequency = #{frequency,jdbcType=SMALLINT},
+      total_times = #{totalTimes,jdbcType=INTEGER},
+      even_times = #{evenTimes,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      image_url1 = #{imageUrl1,jdbcType=VARCHAR},
+      image_url2 = #{imageUrl2,jdbcType=VARCHAR},
+      image_url3 = #{imageUrl3,jdbcType=VARCHAR},
+      end_times = #{endTimes,jdbcType=TIMESTAMP}
+    where game_id = #{gameId,jdbcType=VARCHAR}
+  </update>
+</mapper>

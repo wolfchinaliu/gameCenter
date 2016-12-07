@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiliu.game.dao.ExcelUserMapper" >
+  <resultMap id="BaseResultMap" type="com.shiliu.game.domain.ExcelUser" >
+    <id column="eu_id" property="euId" jdbcType="VARCHAR" />
+    <result column="lab1" property="lab1" jdbcType="VARCHAR" />
+    <result column="lab2" property="lab2" jdbcType="VARCHAR" />
+    <result column="lab3" property="lab3" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="recharge_time" property="rechargeTime" jdbcType="TIMESTAMP" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+  </resultMap>
+
+	<!-- 查询客户的总条数 -->
+  <select id="count" resultType="java.lang.Integer" parameterType="java.lang.String" >
+  	select count(*) from excelUser where open_id=#{gameId}
+  </select>
+  	<!-- 查询客户的方法 -->
+  <select id="selectId" resultMap="BaseResultMap" parameterType="java.lang.Object"  >
+		select eu_id, lab1, lab2, lab3, state, recharge_time, open_id from 
+		exceluser where open_id=#{gameId} order by state asc,recharge_time desc limit #{start},#{size}
+  </select>
+  <select id="selectUser" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.ExcelUser" >
+  	select eu_id, lab1, lab2, lab3, state, recharge_time, open_id from
+  	exceluser where 1!=1 
+  	<if test="#{lab1} != null" >
+  		or lab1=#{lab1}
+  	</if>
+  	<if  test="#{lab2} != null">
+  		or lab2=#{lab2}
+  	</if>
+  	<if  test="#{lab3} != null">
+  		or lab3=#{lab3}
+  	</if>
+  </select>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    eu_id, lab1, lab2, lab3, state, recharge_time, open_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shiliu.game.domain.ExcelUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exceluser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from exceluser
+    where eu_id = #{euId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from exceluser
+    where eu_id = #{euId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shiliu.game.domain.ExcelUserExample" >
+    delete from exceluser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shiliu.game.domain.ExcelUser" >
+    insert into exceluser (eu_id, lab1, lab2, 
+      lab3, state, recharge_time, 
+      open_id)
+       values (#{euId,jdbcType=VARCHAR}, #{lab1,jdbcType=VARCHAR}, #{lab2,jdbcType=VARCHAR}, 
+      #{lab3,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{rechargeTime,jdbcType=TIMESTAMP}, 
+      #{openId,jdbcType=VARCHAR})
+  </insert>
+  <!--  <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.euId,jdbcType=VARCHAR}, #{item.lab1,jdbcType=VARCHAR}, #{item.lab2,jdbcType=VARCHAR}, 
+      #{item.lab3,jdbcType=VARCHAR}, #{item.state,jdbcType=VARCHAR}, #{item.rechargeTime,jdbcType=TIMESTAMP}, 
+      #{item.openId,jdbcType=VARCHAR})
+      </foreach> -->
+  <insert id="insertSelective" parameterType="com.shiliu.game.domain.ExcelUser" >
+    insert into exceluser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="euId != null" >
+        eu_id,
+      </if>
+      <if test="lab1 != null" >
+        lab1,
+      </if>
+      <if test="lab2 != null" >
+        lab2,
+      </if>
+      <if test="lab3 != null" >
+        lab3,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="euId != null" >
+        #{euId,jdbcType=VARCHAR},
+      </if>
+      <if test="lab1 != null" >
+        #{lab1,jdbcType=VARCHAR},
+      </if>
+      <if test="lab2 != null" >
+        #{lab2,jdbcType=VARCHAR},
+      </if>
+      <if test="lab3 != null" >
+        #{lab3,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeTime != null" >
+        #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shiliu.game.domain.ExcelUserExample" resultType="java.lang.Integer" >
+    select count(*) from exceluser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exceluser
+    <set >
+      <if test="record.euId != null" >
+        eu_id = #{record.euId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lab1 != null" >
+        lab1 = #{record.lab1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lab2 != null" >
+        lab2 = #{record.lab2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lab3 != null" >
+        lab3 = #{record.lab3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rechargeTime != null" >
+        recharge_time = #{record.rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openId != null" >
+        open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exceluser
+    set eu_id = #{record.euId,jdbcType=VARCHAR},
+      lab1 = #{record.lab1,jdbcType=VARCHAR},
+      lab2 = #{record.lab2,jdbcType=VARCHAR},
+      lab3 = #{record.lab3,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      recharge_time = #{record.rechargeTime,jdbcType=TIMESTAMP},
+      open_id = #{record.openId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shiliu.game.domain.ExcelUser" >
+    update exceluser
+    <set >
+      <if test="lab1 != null" >
+        lab1 = #{lab1,jdbcType=VARCHAR},
+      </if>
+      <if test="lab2 != null" >
+        lab2 = #{lab2,jdbcType=VARCHAR},
+      </if>
+      <if test="lab3 != null" >
+        lab3 = #{lab3,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eu_id = #{euId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shiliu.game.domain.ExcelUser" >
+    update exceluser
+    set lab1 = #{lab1,jdbcType=VARCHAR},
+      lab2 = #{lab2,jdbcType=VARCHAR},
+      lab3 = #{lab3,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      open_id = #{openId,jdbcType=VARCHAR}
+    where eu_id = #{euId,jdbcType=VARCHAR}
+  </update>
+  <!-- 添加客户List -->
+  <insert id="insertClient" parameterType="list" >
+    insert into exceluser (eu_id, lab1, lab2, 
+      lab3, state, recharge_time, 
+      open_id)
+    values
+	  <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.euId,jdbcType=VARCHAR}, #{item.lab1,jdbcType=VARCHAR}, #{item.lab2,jdbcType=VARCHAR}, 
+      #{item.lab3,jdbcType=VARCHAR}, #{item.state,jdbcType=VARCHAR}, #{item.rechargeTime,jdbcType=TIMESTAMP}, 
+      #{item.openId,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+</mapper>

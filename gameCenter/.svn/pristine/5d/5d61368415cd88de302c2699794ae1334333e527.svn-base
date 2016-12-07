@@ -1,0 +1,24 @@
+package com.shiliu.game.service.impl;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.shiliu.game.dao.UserGameMapper;
+import com.shiliu.game.domain.UserGame;
+import com.shiliu.game.service.IUserGameService;
+@Service
+public class UserGameServiceImpl implements IUserGameService {
+	@Resource
+	private UserGameMapper userGameMapper;
+	@Override
+	public UserGame selectOpenID(String openID, String gameID) {
+		return userGameMapper.selectOpenID(openID, gameID);
+	}
+
+	@Override
+	public int insertSelective(UserGame userGame) {
+		return userGameMapper.insertSelective(userGame);
+	}
+
+}

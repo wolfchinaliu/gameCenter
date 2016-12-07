@@ -1,0 +1,15 @@
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/shiliu?characterEncoding\=UTF-8
+jdbc.userName=root
+jdbc.password=shiliu
+jdbc.minPoolSize = 1
+jdbc.maxPoolSize = 20
+jdbc.maxIdleTime = 120000
+jdbc.acquireIncrement = 2
+jdbc.maxStatements = 0
+jdbc.initialPoolSize = 2
+jdbc.idleConnectionTestPeriod = 1800
+jdbc.acquireRetryAttempts = 30
+jdbc.breakAfterAcquireFailure = false
+jdbc.testConnectionOnCheckout = false
+jdbc.autoCommitOnClose =true

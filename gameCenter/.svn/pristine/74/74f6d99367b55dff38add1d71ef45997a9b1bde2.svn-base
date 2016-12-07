@@ -1,0 +1,22 @@
+package com.shiliu.game.service;
+
+import com.shiliu.game.domain.UserGame;
+
+public interface IUserGameService {
+	/**
+	 * 查询用户是以前玩过
+	 * @param openID 传过来的openID
+	 * @param gameID 传过来的gameID
+	 * @return
+	 */
+	UserGame selectOpenID(String openID,String gameID);
+	/**
+	 * 添加用户游戏信息
+	 * @param userGame 代表用户游戏信息实体
+	 * @return 返回影响的行数
+	 */
+	int insertSelective(UserGame userGame);
+	
+	
+	UserGame selectByGameIdAndOpenId(String openId,String gameId);
+}
