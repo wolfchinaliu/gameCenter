@@ -1,0 +1,28 @@
+﻿@charset "UTF-8";
+
+.zimi { width: 7.16rem; margin: 0.2rem auto 0 auto; }
+.zimi-box {width: 7.16rem; height: 3.47rem; background: url(../../images/zimi/zimi_bg.jpg) no-repeat left top; background-size: contain;}
+.zimi-box h1 { width: 6.15rem; height: 0.5rem; line-height: 0.5rem; padding-top: 0.3rem; padding-left: 0.5rem; font-size: 0.36rem;}
+.zimi-box h1 span { color: #333333; float: right; font-size: 0.32rem;}
+.zimi-box h1 span em { font-style: normal;}
+
+.zimi-timu { width: 6.1rem; margin-left: 0.5rem; height: 1.9rem; overflow: hidden; position: relative; top: 0;left: 0; overflow: hidden;}
+.zimi-list { width: 61rem; position: absolute; top: 0; left: 0; padding-top: 0.2rem;}
+.zimi-list li { width: 6.1rem; float: left;}
+.zimi-list li h2 { font-size: 0.34rem;}
+.zimi-list li p { font-size: 0.28rem; padding-top: 0.1rem;}
+.zimi-list li p.midi { font-size: 0.34rem; text-align: center;}
+
+.zimi-btn { text-align: center; padding-top: 0.2rem;}
+.zimi-btn a { font-size: 0.28rem; text-decoration: none;}
+.zimi-btn a.c666 { color: #666666;}
+.zimi-box a.red { color: #fa6958;}
+.zimi-btn > a:first-child { margin-right: 1rem;}
+
+.packet-msg { font-size: 0.22rem; line-height: 2em; padding-top: 0.2rem; padding-bottom: 0.1rem; }
+
+.packet-box { font-size: 0.3rem; color: #666666; padding-top: 0.1rem; padding-left: 0.47rem;}
+.packet-box li {padding-top: 0.05rem;}
+.packet-box li span.w1 { display: inline-block; width: 2em;}
+.packet-box li span.w2 { display: inline-block; width: 0.5em;}
+.packet-box li input { width: 4rem; padding: 0 0.1rem; height: 0.5rem; line-height: 0.5rem; background-color: #ebebeb; border: none; color: #fa6958;}

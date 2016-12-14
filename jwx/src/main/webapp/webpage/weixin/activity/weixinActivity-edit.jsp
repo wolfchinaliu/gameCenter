@@ -1,0 +1,374 @@
+<%@ page language="java" import="java.util.*"
+         contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="/context/mytags.jsp" %>
+<jsp:include page="/inc.jsp"></jsp:include>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>微信活动</title>
+    <t:base type="jquery,easyui,tools,DatePicker"></t:base>
+    <script type="text/javascript">
+var iswsh = false;
+var regulation = ${activity.activityRule == null ? "{}":activity.activityRule};
+var row = 0;
+var j=0;
+var couponList;
+var ruleNames = ['一等奖','二等奖','三等奖','四等奖','五等奖','六等奖'];
+$(document).ready(function(){
+	/* $.ajax({
+        type : 'POST',
+        url : "weixinActivityController.do?getwshCoupon",
+        dataType : "json",
+        cache : false,
+        error : function() {
+        	alert("出现异常");
+        	frameElement.api.close();
+        },
+        success : function(result) {
+        	if(result.code == 0){
+        		iswsh = true;
+        		
+        	}
+          }
+}); */
+	for(var i = 0; i < regulation.length;i++){
+		addRow(regulation[i]);
+	}
+	<c:if test="${code == 0}">
+	$('input').attr("readonly","readonly");
+	</c:if>
+});
+function addRow(value){
+	if(value == null){
+		if(row >= 6){
+			$.messager.alert("温馨提示！  ","最多只能有六个奖项");
+			return ;
+		}
+		var name ="一等奖";
+		if(row > 0){
+			//校验上条
+			var type = $('#type'+(row-1)).val();
+			var value = $('#value'+(row-1)).val();
+			var pro = $('#probability'+(row-1)).val();
+			var number = $('#number'+(row-1)).val();
+			if(parseInt(type) == 1 && !/^[0-9]+$/.test(value) ){
+				$.messager.alert("温馨提示！  ",$('#name'+(row-1)).val() +"的流量值输入有误");
+				return ;
+			}
+			if((parseInt(type) == 3 && !/^[0-9]+$/.test($('#tempId'+(row-1)).val()) )){
+				$.messager.alert("温馨提示！  ",$('#name'+(row-1)).val() +"的券模板输入有误");
+				return false;
+			}
+			if(!/^[0-9]+$/.test(pro) || parseInt(pro)> 10000){
+				$.messager.alert("温馨提示！  ",$('#name'+(row-1)).val() +"的概率输入有误");
+				return ;
+			}
+			if(!/^[0-9]+$/.test(number) ){
+				$.messager.alert("温馨提示！  ",$('#name'+(row-1)).val() +"的数量输入有误");
+				return ;
+			}
+			if('一等奖' != $('#name'+(row-1)).val() && j==0){
+				name = "一等奖";
+				
+			}else{
+				j++;
+				name = ruleNames[j];
+			}
+		}
+		value = {'name':name,'value':'','probability':'','number':'','type':1,'tempId':''};
+		
+	}
+	var tempId = value.tempId;
+	if(tempId == undefined || tempId == null){
+		tempId = "";
+	}
+	var newRow = "<tr style='height:30px'><td><input id=\"name"+row+"\" value=\""+value.name+"\"/ style='width:60px;height:28px;'>\
+				</td><td><select style='width:90px;height:28px;' id=\"type"+row+"\" onchange='changeType(this)'>\
+					<option value='1' >流量</option><option value='2' >实物</option><option value='3' >微生活券</option></select></td>\
+				</td><td><input id=\"value"+row+"\" value=\""+value.value+"\" style='width:120px;height:28px;' placeholder='请输入流量值'/></td>\
+				</td><td><input id=\"probability"+row+"\" value=\""+value.probability+"\" style='width:120px;height:28px;' placeholder='请输入奖项概率值 （万分之）'/></td>\
+				<td><input id=\"number"+row+"\" value=\""+value.number+"\" style='width:90px;height:28px;' placeholder='请输入奖项总数量'/></td>\
+				<td><input id=\"tempId"+row+"\"value=\""+tempId+"\" style='width:110px;height:28px;' readonly='readonly' placeholder='不需要输入'/></tr>";
+	$("#tableRule tr:last").after(newRow);
+	$('#type'+row).val(value.type);
+	row++;
+}
+function deleteRow(){
+	$("#tableRule tr:last").remove();
+	if(j>0)j--;
+	row--;
+}
+function submit(){
+	var code = ${code};
+	if(code == 0){
+		return false;
+	}
+	
+	if(row < 1){
+		$.messager.alert("温馨提示！  ","请添加奖项");
+		return false;
+	}
+	//校验
+	var probabilitys = 0;
+	var isflow = false;
+	for(var i = 0; i< row;i++){
+		var type = $('#type'+i).val();
+		var value = $('#value'+i).val();
+		var pro = $('#probability'+i).val();
+		var number = $('#number'+i).val();
+		if((parseInt(type) == 1 && !/^[0-9]+$/.test(value) )){
+			$.messager.alert("温馨提示！  ",$('#name'+i).val() +"的流量值输入有误");
+			return false;
+		}
+		if( !/^[0-9]+$/.test(pro) || parseInt(pro)>= 10000){
+			$.messager.alert("温馨提示！  ",$('#name'+i).val() +"的概率输入有误");
+			return false;
+		}
+		if( !/^[0-9]+$/.test(number) ){
+			$.messager.alert("温馨提示！  ",$('#name'+i).val() +"的数量输入有误");
+			return false;
+		}
+		if((parseInt(type) == 3 && !/^[0-9]+$/.test($('#tempId'+i).val()) )){
+			$.messager.alert("温馨提示！  ",$('#name'+i).val() +"的券模板输入有误");
+			return false;
+		}
+		if(parseInt(type) == 1 && (parseInt(value) + parseInt(pro) > 5))
+			isflow = true;
+		probabilitys += parseInt(pro);
+		if(probabilitys > 10000){
+			$.messager.alert("温馨提示！  ","总概率值 不能大于1");
+			return false;
+		}
+	}
+	if( !isflow) {
+		$.messager.alert("温馨提示！  ","活动必须有流量参数");
+		return false
+	}
+	var regulationSave = "["
+	for(var i=0;i<row;i++){
+		regulationSave+="{\"name\":\""+$("#name"+i).val()+"\",\"probability\":\""+$("#probability"+i).val()+"\",\"value\":\""+$("#value"+i).val()+"\",\"number\":\""+$("#number"+i).val()+"\",\"type\":\""+$("#type"+i).val()+"\",\"tempId\":\""+$("#tempId"+i).val()+"\"},"
+	}
+	regulationSave+="]";
+	$('#activityRule').val(regulationSave);
+}
+function changeType(obj){
+	var code = ${code};
+	if(code == 0){
+		return false;
+	}
+	var type = obj.value;
+	var rowNumber = obj.id.charAt(4);
+	var valueName = $('#value'+rowNumber);
+	var tempId = $('#tempId'+rowNumber);
+	tempId
+	if(type == 1){
+		valueName.attr("placeholder","请输入流量值");
+		tempId.attr("placeholder","不需要输入");
+		tempId.attr("readonly","readonly");
+	}else if(type == 2){
+		valueName.attr("placeholder","请输入实物名称");
+		tempId.attr("placeholder","不需要输入");
+		tempId.attr("readonly","readonly");
+	}else if(type == 3){
+		valueName.attr("placeholder","请输入券的名称");
+		tempId.attr("placeholder","请输入券模板Id");
+		tempId.removeAttr("readonly")
+	}
+	
+	
+}
+</script>
+			<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/jquery/jquery-migrate-1.2.1.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/jquery/ajaxfileupload.js"></script>
+			<script type="text/javascript">
+	        		//加载是否已经有图片
+	        	  	$(document).ready(function(){
+	        			if('${activity.imagePath }'!=null&&'${activity.imagePath }'!=""){
+	        				$("#imgUrl").attr("src", '${activity.imagePath }');
+	        			} 
+					});   
+		  	</script>
+  			<script type="text/javascript">
+		        $(function () {
+		            $(":button").click(function () {
+		            	//做判断是否选择图片，提示。
+		            	var imgValue=  $("#file1").val();
+		            	if(imgValue!=null&&imgValue!=""){
+			                ajaxFileUpload();
+		            	}else{		            	
+		            		alert("必须选择上传图片")
+		            	}
+		            })
+		        })
+		        function strToJson(str){ 
+				var json = eval('(' + str + ')'); 
+				return json; 
+				} 
+		        function ajaxFileUpload() {
+		            $.ajaxFileUpload
+		            (
+		                {
+		                    url: 'weixinSourceController.do?uploadthumbMike', //用于文件上传的服务器端请求地址
+		                    secureuri: false, //是否需要安全协议，一般设置为false
+		                    fileElementId: 'file1', //文件上传域的ID
+		                    dataType: 'AjaxJson', //返回值类型 一般设置为json
+		                    success: function (data, status, e)  //服务器成功响应处理函数
+		                    {                    	
+		                    	data = strToJson(data);
+		                        $("#imgUrl").attr("src", data.attributes.imgUrl);
+		                        $("#imagePath").val(data.attributes.imgUrl);
+		                    } ,
+		                    error: function (data, status, e)//服务器响应失败处理函数
+		                    {
+		                        alert("上传图片失败！");
+		                    } 
+		                }
+		            )
+		            return false;
+		        }
+		    </script>
+    <style type="text/css">
+    .anniu{
+	color:#01599d;
+	text-decoration: none;
+	padding:6px;
+	border-radius: 5px;
+	background: #C4C4C4;
+	margin: 1px;
+	line-height: 14px;
+	font-size: 12px;
+	cursor: pointer;
+}
+.anniu:hover{
+	color:#e2800c;
+	font-size: 13px;
+	text-decoration: none;}
+    </style>
+</head>
+<body>
+<t:formvalid formid="formobj" dialog="true" usePlugin="password"
+             layout="table" action="weixinActivityController.do?doSave" tiptype="1" beforeSubmit="submit">
+    <input id="id" name="id" type="hidden"
+           value="${activity.id }"/>
+    <input id="type" name="type" type="hidden"
+           value='${type== null?1:type }'/>
+           <input id="activityRule" name="activityRule" type="hidden"/>
+    <table style="width: 600px;" cellpadding="0" cellspacing="1"
+           class="formtable">
+        <tr>
+            <td align="right"><label class="Validform_label"> 活动名称:
+            </label></td>
+            <td class="value" ><input class="inputxt" id="title" datatype="*" value="${activity.title }"
+                                                 name="title" type="text"> <span class="Validform_checktip"></span></td>
+                                                  <td align="right"><label class="Validform_label">
+                流量类型: </label></td>
+            <td class="value">
+                <input type="radio" value="1" name="flowType" <c:if test="${activity.flowType eq'1' || activity.flowType == null}">checked="checked"</c:if> /> 全国流量
+                <input type="radio" value="2" name="flowType" <c:if test="${activity.flowType eq '2'}">checked="checked"</c:if>/>省内流量
+            </td>
+        </tr>
+        <tr>
+            <td align="right"><label class="Validform_label"> 活动描述:
+            </label></td>
+            <td class="value" colspan="3"><input class="inputxt" value="${activity.description }"
+                                                 id="description" style="width: 350px" name="description"
+                                                 ignore="ignore" type="text"> <span
+                    class="Validform_checktip"></span></td>
+        </tr>
+        <tr>
+            <td align="right"><label class="Validform_label"> 开始时间:
+            </label></td>
+            <td class="value"><input class="Wdate"
+                                     onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                     style="width: 150px" id="startTime" name="startTime"
+                                     value="<fmt:formatDate value='${activity.startTime}' type="date" pattern="yyyy-MM-dd HH:mm:ss"/>">
+                <span class="Validform_checktip"></span></td>
+            <td align="right"><label class="Validform_label"> 结束时间:
+            </label></td>
+            <td class="value"><input class="Wdate"
+                                     onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                     style="width: 150px" id="endTime" name="endTime"
+                                     value="<fmt:formatDate value='${activity.endTime}' type="date" pattern="yyyy-MM-dd HH:mm:ss"/>">
+                <span class="Validform_checktip"></span></td>
+        </tr>
+        <tr>
+            <td align="right"><label class="Validform_label"> 时间段设置:
+            </label></td>
+            <td class="value" colspan="3"><input class="inputxt" value="${activity.timePart }"
+                                                 id="timePart" style="width: 300px" name="timePart"
+                                                 ignore="ignore" type="text"> <span>9:00-13:00;18:20-20:05/1,2,3</span></td>
+        </tr>
+        <tr>
+        		<td>实物大转盘</td>
+        		<td>
+        				<p><input type="file" id="file1" name="file" accept="image/png,image/gif,image/JPEG,image/BMP" /></p>
+			    		<input type="button" value="上传" />
+			    		<p><img id="imgUrl" name="imgUrl" width="250" height="100" alt="图片未上传"  /></p>
+			    		<input id="imagePath" name="imagePath" type="hidden" />
+        		</td>
+        </tr>
+        
+        <tr>
+        		<td>跳转链接</td>
+        		<td><input type="text" id="activityUrl" name="activityUrl" value="${activity.activityUrl }" /><td>
+        </tr>
+        
+        <tr>
+         <td align="right"><label class="Validform_label"> 参与频次:</label></td>
+
+            <td class="value"><t:dictSelect field="frequency" typeGroupCode="frequency" hasLabel="false"
+                                            defaultVal="${activity.frequency == null ? 1 :activity.frequency }"></t:dictSelect>
+                <span class="Validform_checktip"></span></td>
+            <td align="right"><label class="Validform_label">
+                每人抽奖次数: </label></td>
+            <td class="value"><input id="evenNumber"
+                                     name="evenNumber" type="text" style="width: 150px" value="${activity.evenNumber }"
+                                     class="easyui-numberbox inputxt" datatype="n" precision="0">
+                <span class="Validform_checktip"></span> <label
+                        class="Validform_label" style="display: none;">每人抽奖次数</label></td>
+        </tr>
+        <tr>
+            <td align="right"><label class="Validform_label">
+                总抽奖次数: </label></td>
+            <td class="value"><input id="totalNumber"
+                                     name="totalNumber" type="text" style="width: 150px" value="${activity.totalNumber }"
+                                     class="easyui-numberbox inputxt" datatype="n" precision="0">
+                <span class="Validform_checktip"></span> <label
+                        class="Validform_label" style="display: none;">总抽奖次数</label></td>
+                             <td align="right"><label class="Validform_label">
+                没中奖提示: </label></td>
+            <td class="value"><textarea id="noDraw"
+                                     name="noDraw" type="text" style="width: 180px">${activity.noDraw == null ? "您没有中奖  谢谢你的参与" :activity.noDraw }</textarea></td>
+
+        </tr>
+        <tr>
+         <td align="right"><label class="Validform_label">
+                实物中奖提示: </label></td>
+            <td class="value"><textarea id="preDraw"
+                                     name="preDraw" type="text" style="width: 180px">${activity.preDraw == null ? "尊敬的$name \\n恭喜您获得 $level $value \\n请保持手机通畅，稍后客服人员会联系您" : activity.preDraw}</textarea></td>
+                                      <td align="right"><label class="Validform_label">
+                流量中奖提示: </label></td>
+            <td class="value"><textarea id="flowDraw"
+                                     name="flowDraw" type="text" style="width: 180px">${activity.flowDraw == null ? "恭喜您获得 $level $value" : activity.flowDraw}</textarea></td>
+        </tr>
+        <tr>
+         <td align="center" colspan="4"><label class="Validform_label">$name:用户昵称 &nbsp;&nbsp; $level:中奖名称 &nbsp;&nbsp; $value:中奖值 </label></td>
+        </tr>
+        </table >
+        <table id="tableRule" style="width: 600px;" cellpadding="0" cellspacing="1" class="formtable">
+         <tr><th>名称</th><th>类型</th><th>流量值/奖品名称</th><th>概率 ‱（万分之） </th><th>数量</th><th>券模板Id</th></tr>
+        </table>
+        <br/>
+        <c:if test="${code == 1 }">
+        <a class="anniu" href="javascript:addRow();">添加奖项</a><a class="anniu" href="javascript:deleteRow();">删除奖项</a>
+        <br/><br/>
+        </c:if>
+        <tr>
+            <td colspan="4">
+                *所有概率的和小于10000，概率为0表示不会中奖\n
+                *总抽奖次数影响中奖概率
+            </td>
+        </tr>
+</t:formvalid>
+</body>
+</html>

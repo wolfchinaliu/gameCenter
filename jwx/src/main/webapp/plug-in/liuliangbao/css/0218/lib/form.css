@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/*
+* 表单
+*/
+.form-bitian { color: #ff1a1a;}
+.form { padding: 15px 0;}
+.form-item { padding-bottom: 15px; line-height: 30px; position: relative; top: 0; left: 0;}
+.form-item-l { width: 120px; position: absolute; top: 0; left: 0; font-size: 14px; text-align: right;}
+.form-item-r { padding-left: 150px;}
+.form-item-r label { display: inline-block; height: 30px; line-height: 30px; margin-right: 30px; cursor: pointer;}
+.form-item-r label input { vertical-align: -2px; *vertical-align: middle; margin-right: 5px; cursor: pointer;}
+.form-item-r .btns-add { margin-left: 10px;}
+.form .ui-text { width: 244px; padding: 6px 5px; vertical-align: top;}
+.form-text-date { cursor: text;}
+.form-idcard-box,.form-idcard-img,.form-idcard-msg { display: inline-block; width: 200px; height: 140px; overflow: hidden; float: left;}
+.form-idcard-box { padding-right: 20px;}
+.form-idcard-img { margin-right: 20px;}
+.form-idcard-box-border { padding-bottom: 15px; border-bottom: dashed 1px #b1b1b3;}
+.form-idcard-img-border { padding-bottom: 15px; border-bottom: dashed 1px #b1b1b3;}
+.form-idcard-msg { width: 300px; color: #b0b0b2;}
+.form-item-msg { margin-left: 20px;  color: #b0b0b2;}
+.form-btn { padding: 50px 0 0 150px;}
+.form .btns-1 { width: 150px; height: 42px; line-height: 42px;}
+.form .ui-photo {  display: inline-block; vertical-align: middle;}
+

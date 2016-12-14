@@ -1,0 +1,6 @@
+﻿@charset "UTF-8";
+
+.sign { width: 7.16rem; margin: 0.2rem auto 0 auto; }
+
+.btn-1 { margin-top: 0.5rem;}
+.sign-msg { text-align: center; color: #fa6958; font-size: 0.24rem; padding-top: 0.1rem;}

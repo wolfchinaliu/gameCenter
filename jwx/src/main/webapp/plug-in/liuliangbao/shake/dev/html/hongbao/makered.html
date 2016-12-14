@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<!-- 优先使用最新版本 IE 和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+	<meta content="yes" name="apple-mobile-web-app-capable"/>
+	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+	<meta name="format-detection" content="telphone=no, email=no"/>
+	<title>制作红包</title>
+	<link rel="stylesheet" type="text/css" href="../../src/css/hongbao/normalize.css">
+    <script src="../../src/js/lib/common.js"></script>
+</head>
+<body>
+	<article class="container">
+		<!--页头-->
+		<header class="header header-makered">
+			<figure class="photo p140-140">
+				<a href="#"><img src="../../res/images/1.jpg" alt="" /></a>
+			</figure>
+			<ul class="header-msg-makered">
+				<li>昵称：XXX</li>
+				<li>手机号：XXXXXXXXXXX</li>
+				<li>省内流量：XXX <span class="plrem02">全国流量：XXX</span></li>
+			</ul>
+		</header>
+		
+		<section class="main">
+			
+			<p class="main-text mbrem02">
+				佳讯科技 支持您给朋友发送<span class="main-text-red">全国通用</span>流量红包，还有<span class="main-text-red">XX.M</span>用于补贴.
+			</p>
+			
+			<section class="form">
+				<form method="post" action="#">
+					<ul class="form-list">
+						<li><label>活动时间：</label><span>2016年2月18-2016年6月6日</span></li>
+						<li><label>流量类型：</label><span>全国通用</span></li>
+						<li><label>祝福语：</label><input type="text" class="ui-text" value="恭喜发财，大吉大利！" /></li>
+						<li><label>流量：</label><span>300M</span></li>
+						<li><label>个数：</label><span>20个</span></li>
+					</ul>
+					<div class="form-btn">
+						<a id="j-btn-make" href="javascript:;" class="ui-btn ui-btn-4">制作红包</a>
+					</div>
+				</form>
+			</section>
+			<p class="main-msg main-text-red t-center">
+				活动期间，您还可以发送X个红包
+			</p>
+			
+		</section>
+		
+	</article>
+	
+	<script type="text/javascript" src="../../src/js/zepto/zepto-all-min.js"></script>
+    <script type="text/javascript" src="../../src/js/zepto/car-popup.js"></script>
+	<script>
+		$(function () {
+		     $('#j-btn-make').click(function(){
+		        $('body').popup({
+		            title:'提示'
+		            ,message:'<h2>尊敬的用户您好:</h2><p>江西佳讯的补贴流量不足,此活动后续会不定期开展,敬请期待,您还可以去别的公众号发。</p>'
+		            ,id:'pop-2'
+		            ,ok:"去别处发"
+		            ,onOk:function(){
+		                // 确认按钮的回调函数
+		                console.log('ok');
+		            }
+		            ,cnacel:"知道了"
+		            ,onCancel: function(){
+		            	console.log('cancel');
+		            }
+		        });
+		        return false;
+		    });
+
+		});
+	</script>
+
+</body>
+</html>

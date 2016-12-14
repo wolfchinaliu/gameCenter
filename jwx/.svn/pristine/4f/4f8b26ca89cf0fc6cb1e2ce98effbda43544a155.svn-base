@@ -1,0 +1,88 @@
+#SESSION
+sessionVersion=sessionVersion
+#
+templatepath=docTemp
+#
+uploadpath=upload
+
+office_home=D://OpenOffice
+
+#\u57DF\u540D\u53D1\u5E03\u5730\u5740\uFF0C\u5982\u6709\u9879\u76EE\u540D\uFF0C\u5C06\u9879\u76EE\u540D\u52A0\u4E0A
+domain=http://gao.ngrok.love10.net/jwx
+domain1=http://gao.ngrok.love10.net/jwx
+#domain=http://shiyihong8.xicp.net
+#domain=http://www.bt-tech.cn/wx/
+#DEV(\u751F\u4EA7\u6A21\u5F0F)/PUB(\u5F00\u53D1\u6A21\u5F0F)
+sqlReadMode=PUB
+
+#database type for spring jdbc 
+jdbc.url.jeecg=mysql
+
+#\u6309\u94AE\u6743\u9650\u5F00\u5173
+button.authority.jeecg=true
+
+#auto scan menu flag true or false
+auto.scan.menu.flag=false
+
+#ckfinder upload files\u5982\u679C\u4E0D\u60F3\u628A\u6587\u4EF6\u653E\u5728\u975E\u672C\u9879\u76EE\u4E0B\uFF0Cck.userfiles\u53EF\u4EE5\u76F4\u63A5\u6307\u5B9A\u672C\u9879\u76EE\u4E0B
+#						\u7684\u6587\u4EF6\u5939\u540D\uFF0C\u5E76\u628Ack.baseDir\u7559\u7A7A\u5373\u53EF
+####\u6307\u5B9A\u975E\u672C\u9879\u76EE\u7684http\u5730\u5740\uFF0C\u7528\u4E8Eckfinder\u6307\u5B9A\u6587\u4EF6\u5E93
+ck.userfiles=http://localhost/files
+####ckfinder\u6307\u5B9A\u6587\u4EF6\u5E93\u7684\u7EDD\u5BF9\u8DEF\u5F84(\u8BF7\u6539\u4E3A\u81EA\u5DF1\u7684)
+ck.baseDir=E:/upload
+####\u662F\u5426\u4E3A\u6BCF\u4F4D\u7528\u6237\u521B\u5EFA\u4E00\u4E2A\u72EC\u6709\u7684\u6587\u4EF6\u5939\u5B58\u653E\u6587\u4EF6(true/false)
+ck.isOnlyUser=true
+
+#ckeditor config
+filebrowserBrowseUrl='plug-in/ckfinder/ckfinder.html'
+filebrowserImageBrowseUrl='plug-in/ckfinder/ckfinder.html?type=Images'
+filebrowserFlashBrowseUrl='plug-in/ckfinder/ckfinder.html?type=Flash'
+filebrowserUploadUrl='plug-in/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files'
+filebrowserImageUploadUrl='plug-in/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images'
+filebrowserFlashUploadUrl='plug-in/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+
+# \u9A8C\u8BC1\u7801\u914D\u7F6E
+# \u9A8C\u8BC1\u7801\u957F\u5EA6
+randCodeLength=4
+# \u9A8C\u8BC1\u7801\u7C7B\u578B\uFF1A1-\u6570\u5B57\uFF0C2-\u5C0F\u5199\u5B57\u6BCD\uFF0C3-\u5927\u5199\u5B57\u7B26\uFF0C4-\u5B57\u7B26,5-\u6DF7\u5408\u5B57\u7B26\u4E32\uFF0C
+randCodeType=5
+#update-end--Author:zhangguoming  Date:20140226 for\uFF1A\u6DFB\u52A0\u9A8C\u8BC1\u7801
+
+#jfinal \u516C\u5171\u7684url
+jfinalUrl-config=http://localhost:81/jfinal/
+#jfinalUrl-config=http://localhost:80/jfinal/
+jwxUrl-config=http://gao.ngrok.love10.net/jwx/
+
+media.url.prefix=http://gao.ngrok.love10.net/files
+
+#media.url.prefix=E:/upload
+# address of upload image
+media.path.prefix=E:/upload
+
+media.txt.prefix=E:/upload/txt
+
+shareurl.prefix=http://gao.ngrok.love10.net/jwx/
+
+#http://liuliangbao.ngrok.natapp.cn
+
+
+COMPONENT_APP_ID=wx0977653f70fe8fad
+COMPONENT_APP_ID2=wx65c1f33bcf7051a5
+
+# TODO 
+shiliuAppId=wxf690ee5503d0e67f
+shiliuSecret=94cabcd7e1d58ea66112fae399f371af
+shiliuAccountId=40288101569c4f4c01569c672dfa002b
+shiliuflowkeybankhrcrept=r5dh6jk4
+shiliuflowkeyjxkjhrcrept=h8jk9mo4
+
+QRcode.storage.path=E:/upload/qrcode/
+
+mail_serverhost=smtp.exmail.qq.com
+mail_serverport=25
+mail_fromaddress=zhangsisi@evbao.com.cn
+mail_fromaddress_password=Click2013
+mail_fromaddress_nickname=\u5317\u4EAC\u62FE\u6D41\u79D1\u6280\u6709\u9650\u516C\u53F8
+mail_subject=\u77F3\u69B4\u7BA1\u7406\u5E73\u53F0\u0328V1.1.1\u53D1\u5E03
+mail_content_version=V1.1.1
+mail_toaddress=zhangsisi@evbao.com.cn,weixuemei@evbao.com.cn

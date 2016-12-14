@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=src/main/webapp/plug-in,src/main/webapp/webpage,src/main/resources/test,src/main/webapp/easyui,src/main/resources/dev
+validator.Unchecked=

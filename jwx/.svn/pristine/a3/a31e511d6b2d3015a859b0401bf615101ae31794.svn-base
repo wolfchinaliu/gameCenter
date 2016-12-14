@@ -1,0 +1,11 @@
+﻿@charset "UTF-8";
+
+.center-nav {}
+.center-nav-list { box-sizing: border-box;}
+.center-nav-list > li { width: 50%; float:  left; text-align: center; padding: 0.5rem; box-sizing: border-box; border-bottom: solid 1px #cdcdcd; border-right: solid 1px #cdcdcd;}
+.center-nav-list > li:nth-child(even) { border-right: none;}
+.center-nav-list a { text-decoration: none; display: block;}
+.center-nav-img { width: 1rem; height: 1rem; margin: 0 auto;}
+.center-nav-img > img { width: 100%; height: 100%;}
+.center-nav-msg { font-size: 0.26rem; color: #3a3a3a; padding-top: 0.3rem;}
+

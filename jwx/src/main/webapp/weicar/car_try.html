@@ -1,0 +1,330 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/reserve/main.css?2014-05-21" media="all" />
+<link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/reserve/mobiscroll_min.css?2014-05-21" media="all" />
+<script type="text/javascript" src="http://stc.weimob.com/src/reserve/zepto_min.js?2014-05-21"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/reserve/mobiscroll_min.js?2014-05-21"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/reserve/alert.js?2014-05-21"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/reserve/swipe.js?2014-05-21"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/reserve/initSwipe.js?2014-05-21"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/reserve/index.js?v=201409162014-05-21"></script>
+<title>宁夏驰川奔驰4S店</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<meta name="Keywords" content="" />
+	<meta name="Description" content="" />
+	<!-- Mobile Devices Support @begin -->
+		<meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<!-- Mobile Devices Support @end -->
+	<link rel="shortcut icon" href="img/head_pic.jpg" />
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+	<script type="text/javascript">
+window.shareData = {
+    "imgUrl": "http://hs-album.oss.aliyuncs.com/static/47/7b/20/image/20141223/20141223101341_50079.jpg",
+    "timeLineLink": "http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername",
+    "sendFriendLink": "http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername",
+    "weiboLink": "http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername",
+    "tTitle": "预约保养维修 0951-2017776 宁夏银川市金凤区创业街76号",
+    "tContent": "预约保养维修 0951-2017776 宁夏银川市金凤区创业街76号",
+    "fTitle": "预约保养维修 0951-2017776 宁夏银川市金凤区创业街76号",
+    "fContent": "预约保养维修 0951-2017776 宁夏银川市金凤区创业街76号",
+    "wContent": "预约保养维修 0951-2017776 宁夏银川市金凤区创业街76号"
+};
+    var wechatid = "";
+    var tel = "";
+    if(localStorage['tel']){
+         tel = localStorage['tel'];
+    }
+    var uid = "o6eyYjq5rCBlbhKcnAvz-YZQazmI";
+    var isValiTel = true;
+    if((!uid || uid ==0) && !tel){
+       isValiTel = false;
+    }else{
+       isValiTel = true;
+    }
+    var config = {
+        uploadUrl: '/webreserve/AddImage',
+        submitUrl:'/webreserve/SubmitBook',
+        isValiTel: isValiTel, //是否需要验证手机号码
+        sendCodeUrl: '/webreserve/SendCardCheckCode', //发送验证码
+        subUrl: '/webreserve/CheckMessage', //提交校验验证码是否正确
+        subFn: function(loader,size){
+                var xhr = new XMLHttpRequest(),
+                fd = new FormData();
+                fd.append('is_pic', size);
+                $('#applyBox [name]').each(function(){
+                    var val = this.type == 'file' ? $(this).data('url') : this.value.replace(/<|>/g, '')
+                    if(val){
+                        fd.append(this.name, val);
+                    }
+                });
+                 var ret_single = "";
+                $('#applyBox .single').each(function(){
+                    ret_single += '$'+this.name+'#'+this.value;
+                });
+                    fd.append('fieldsigle', ret_single);
+                var ret_download = "";
+                $('#applyBox .download').each(function(){
+                    ret_download += '$'+this.name+'#'+this.value;
+                });
+                    fd.append('fielddownload', ret_download);
+                xhr.open("post", config.submitUrl, true);
+                xhr.addEventListener("load", function(e){
+                    var res = JSON.parse(e.target.responseText);
+                    if(res.errno == 1){
+                            $.alert({txt: res.msg});
+                    }else{
+                           jumpurl(res.url);
+                    }
+
+                    loader.close();
+                }, false);
+            xhr.send(fd);
+            }
+        }
+</script>
+<!--weimob 2.0-->
+<div class="container gray_bg">
+    <div class="banner">
+        <img src="static/img/head_pic.jpg">
+    </div>
+    <div class="explain">
+            <h3>预约说明</h3>
+            <article>
+                欢迎您使用宁夏驰川奔驰5S店微信保养预约系统，您只需完成下列信息我店即刻根据您的需要为您安排专属保养维修预约。【本服务只限驰川会员享受】            </article>
+        </div>
+    <div class="box">
+            <ul class="box_list" id="addressBox">
+                    <li>
+                        <div><i class="ico_address"></i>地址：</div>
+                        <div><a href="http://api.map.baidu.com/marker?location=38.459353,106.161704&title=宁夏驰川奔驰4S店&name=宁夏驰川奔驰4S店&output=html&src=weiba|weiweb">宁夏银川市金凤区创业街76号</a></div>
+                        <div><i class="ico_arrow"></i></div>
+                    </li>
+                    <li>
+            <div><i class="ico_tel"></i>预约电话：</div>
+            <div><a href="tel:0951-2017776">0951-2017776</a></div>
+            <div><i class="ico_arrow"></i></div>
+            </li>
+            </ul>
+        </div>
+        
+    <div class="box apply_box" id="applyBox">
+    <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+            <dl class="pb15">
+                <dt>            
+                联系人<span class="r_tips">*</span>                </dt>
+                <dd>
+                    <input name="truename" class="txt required" id="truename" value="" placeholder="请输入您的名字" type="text">
+                </dd>       
+                        <dt>
+                    联系电话<span class="r_tips">*</span>
+                </dt>
+                <dd>
+                    <input name="tel" class="txt required" id="tel" value="" placeholder="请输入您的电话" type="tel">
+                </dd>
+                
+                        <dt>预约日期</dt>
+                    <dd>
+                        <input type="text" class="txt" name="dateline" id="dateline" readonly="readonly" data-role="date" value="" placeholder="预约日期"/>
+                    </dd>
+                        
+                <dt>预约时间</dt>
+                <dd>
+                <select name="timepart" id="timepart" class="txt" placeholder="预约时间">
+                    <option value="0:00-1:00">0:00-1:00</option><option value="1:00-2:00">1:00-2:00</option><option value="2:00-3:00">2:00-3:00</option><option value="3:00-4:00">3:00-4:00</option><option value="4:00-5:00">4:00-5:00</option><option value="5:00-6:00">5:00-6:00</option><option value="6:00-7:00">6:00-7:00</option><option value="7:00-8:00">7:00-8:00</option><option value="8:00-9:00">8:00-9:00</option><option value="9:00-10:00">9:00-10:00</option><option value="10:00-11:00">10:00-11:00</option><option value="11:00-12:00">11:00-12:00</option><option value="12:00-13:00">12:00-13:00</option><option value="13:00-14:00">13:00-14:00</option><option value="14:00-15:00">14:00-15:00</option><option value="15:00-16:00">15:00-16:00</option><option value="16:00-17:00">16:00-17:00</option><option value="17:00-18:00">17:00-18:00</option><option value="18:00-19:00">18:00-19:00</option><option value="19:00-20:00">19:00-20:00</option><option value="20:00-21:00">20:00-21:00</option><option value="21:00-22:00">21:00-22:00</option><option value="22:00-23:00">22:00-23:00</option><option value="23:00-24:00">23:00-24:00</option>                </select>
+                </dd>       
+        
+                <dt>
+                车牌<span class="r_tips">*</span>                </dt>
+                <dd><input name="车牌" class="single txt required" id="0" placeholder="请输入您的车牌" value="" type="text" 
+                    style="-webkit-appearance: none;width: 100%;height: 40px;border: 1px solid #dadbda;border-radius: 2px;background-color: #f6f6f6;padding: 0 10px;"></dd>
+                
+                <dt>
+                公里数<span class="r_tips">*</span>                </dt>
+                <dd><input name="公里数" class="single txt required" id="1" placeholder="请输入您的公里数" value="" type="text" 
+                    style="-webkit-appearance: none;width: 100%;height: 40px;border: 1px solid #dadbda;border-radius: 2px;background-color: #f6f6f6;padding: 0 10px;"></dd>
+                
+        
+                                                        <dt>备注</dt>
+                <dd>
+                        <textarea name="info" class="txt" style=" height:99px;overflow-y:visible" id="info" placeholder="请输入备注信息"></textarea>
+                        <input type="hidden" name="uid" id="uid" value="o6eyYjq5rCBlbhKcnAvz-YZQazmI" />
+                        <input type="hidden" name="rid" id="rid" value="31697" />
+                        <input type="hidden" name="aid" id="aid" value="395400" />
+                        <input type="hidden" name="hidid" id="hidid" value="0" />
+                </dd>
+            </dl>
+        <img style="display:none;" src="http://hs-album.oss.aliyuncs.com/static/47/7b/20/image/20141223/20141223101341_50079.jpg" class="shareImgUrl" />
+        </div>
+        
+
+    <footer class="sub_wrap">
+        <!--<input id="showcard" class="btn mt20" value="" type="button">-->
+                <input type="submit" class="btn mt20" id="subBtn" value="提交预约">
+        <div class="copyright">&copy;小马微信技术支持</div>
+    </footer>
+        <nav class="nav">
+                <div class="fixed">
+						<a href="weisite/home?pid=24137&amp;bid=32449&amp;wechatid=fromUsername&amp;wxref=mp.weixin.qq.com" class="">
+							<p class="home"></p>
+							<span>首页</span>
+						</a>
+                        <a href="http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername" class="on"><i class="ico_clock"></i>立即预约</a>
+                        <a id="myBtn" ><i class="ico_people"></i>我的预约</a>
+                </div>
+        </nav>
+        
+        <!--
+导航菜单
+   后台设置的快捷菜单
+-->
+							<div class="top_bar footer_bar" style="-webkit-transform:translate3d(0,0,0)">
+			<nav>
+				<ul class="top_menu">
+					<li onclick="location.reload();"><span></span></li><!-- 首页：刷新 -->
+																<li>
+															<a href="tel:027-65681888">
+									<span class="icon-phone"></span><label class="homemenu_text">电话</label>
+								</a>
+													</li>
+														</ul>
+			</nav>
+		</div>
+	
+<!--
+分享前控制
+-->
+</div>
+<script type="text/javascript">
+function jumpurl(url){
+    window.location.href = url;
+}
+</script>
+<script>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('showOptionMenu');
+});
+</script></body>
+<script type="text/javascript">
+(function() {
+	var wtj = document.createElement('script'); wtj.type = 'text/javascript'; wtj.async = true;
+	wtj.src = 'http://tj.weimob.com/wtj.js?url=' + encodeURIComponent(location.href);
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wtj, s);
+})();
+function weimobAfterShare(shareFromWechatId,sendFriendLink,shareToPlatform){
+	var wmShare = document.createElement('script'); wmShare.type = 'text/javascript'; wmShare.async = true;
+    wmShare.src = 'http://tj.weimob.com/api-share.js?fromWechatId=' + shareFromWechatId + '&shareToPlatform=';
+	wmShare.src += shareToPlatform + '&pid=395400&sendFriendLink=' + encodeURIComponent(sendFriendLink);
+    var stj = document.getElementsByTagName('script')[0]; stj.parentNode.insertBefore(wmShare, stj);
+}
+
+/**
+ * 默认分享出去的数据
+ *
+ */
+function getShareImageUrl(){
+
+	var share_imgurl = "";
+	if("" == share_imgurl){
+		var shareImgObj = document.getElementsByClassName("shareImgUrl")[0];
+		if('undefined' != typeof(shareImgObj)){
+			share_imgurl = shareImgObj.src;
+		}
+	}
+	return share_imgurl;
+}
+
+window.shareData = window.shareData || {
+		"timeLineLink": "http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername",
+	"sendFriendLink": "http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername",
+	"weiboLink": "http://395400.m.weimob.com/webreserve/ReserveBook?aid=395400&rid=31697&wechatid=fromUsername",
+	"tTitle": document.title,
+	"tContent": document.title,
+	"fTitle": document.title,
+	"fContent": document.title,
+	"wContent": document.title}
+
+
+
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	// 发送给好友
+	WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+		WeixinJSBridge.invoke('sendAppMessage', { 
+			"img_url": getShareImageUrl(),
+			"img_width": "640",
+			"img_height": "640",
+			"link": window.shareData.sendFriendLink,
+			"desc": window.shareData.fContent,
+			"title": window.shareData.fTitle
+		}, function (res) {
+			if('send_app_msg:cancel' != res.err_msg){
+				weimobAfterShare("o6eyYjq5rCBlbhKcnAvz-YZQazmI",window.shareData.sendFriendLink,'appmessage');
+			}
+			//_report('send_msg', res.err_msg);
+		})
+	});
+
+	// 分享到朋友圈
+	WeixinJSBridge.on('menu:share:timeline', function (argv) {
+		WeixinJSBridge.invoke('shareTimeline', {
+			"img_url": getShareImageUrl(),
+			"img_width": "640",
+			"img_height": "640",
+			"link": window.shareData.timeLineLink,
+			"desc": window.shareData.tContent,
+			"title": window.shareData.tTitle
+		}, function (res) {
+			if('share_timeline:cancel' != res.err_msg){
+				//如果用户没有取消
+				weimobAfterShare("o6eyYjq5rCBlbhKcnAvz-YZQazmI",window.shareData.timeLineLink,'timeline');
+			}
+			//_report('timeline', res.err_msg);
+		});
+	});
+
+	// 分享到微博
+	WeixinJSBridge.on('menu:share:weibo', function (argv) {
+		WeixinJSBridge.invoke('shareWeibo', {
+			"content": window.shareData.wContent,
+			"url": window.shareData.weiboLink
+		}, function (res) {
+			if('share_weibo:cancel' != res.err_msg){
+				weimobAfterShare("o6eyYjq5rCBlbhKcnAvz-YZQazmI",window.shareData.weiboLink,'weibo');
+			}
+			//_report('weibo', res.err_msg);
+		});
+	});
+}, false);
+</script>
+<script type="text/javascript" src="http://kf.weimob.com/js/ChatFloat.js"></script>
+<script type="text/javascript">
+new ChatFloat({
+        AId: '395400',
+        openid: "o6eyYjq5rCBlbhKcnAvz-YZQazmI",
+		top:150,
+		right:0,
+		IsTest:false
+});
+</script>
+
+
+<script type="text/javascript" src="http://stc.weimob.com/src/st/share_channel.js?v=10101010"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/st/base64.js?v=10101011"></script>
+<script type="text/javascript" src="http://stc.weimob.com/src/st/st.js?v=10101011"></script>
+<script type="text/javascript">
+ //使用案例如###如若上线请到研发群找我@赵增煜###
+st.push("_triggerEvent",{
+		"is_statistic_on":"on", //开关
+		"statisticServerPath": "http://statistic.weimob.com/wm.js", //统计地址
+		"memcServerPath": "http://statistic.weimob.com/memc?cmd=get", //缓存地址
+		"stat_action":"loadPage",  //统计动作类型
+		"stat_optValue":""    //参数值
+});
+</script></html>

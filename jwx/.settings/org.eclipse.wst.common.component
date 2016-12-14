@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="jwx">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="xmlbeans-2.3.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xmlbeans-2.3.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ezmorph-1.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ezmorph-1.0.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CKFinderPlugin-ImageResize-2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/CKFinderPlugin-ImageResize-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-jpa-2.0-api-1.0.1.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-jpa-2.0-api-1.0.1.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-validator-4.2.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-validator-4.2.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-context-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-context-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ueditor.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ueditor.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-orm-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-orm-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="proxool-cglib-0.9.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/proxool-cglib-0.9.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xpp3_min-1.1.4c.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xpp3_min-1.1.4c.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="unoil-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/unoil-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpclient-cache-4.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/httpclient-cache-4.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="groovy-2.3.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/groovy-2.3.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="proxool-0.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/proxool-0.8.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-digester-2.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-digester-2.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-validator-1.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-validator-1.3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="qiniu-java-sdk-6.1.7.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/qiniu-java-sdk-6.1.7.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="fluent-hc-4.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/fluent-hc-4.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-core-asl-1.8.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jackson-core-asl-1.8.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang-2.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-lang-2.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="thumbnailator-0.4.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/thumbnailator-0.4.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jodconverter-3.0-beta-4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jodconverter-3.0-beta-4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CKFinderPlugin-Watermark-2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/CKFinderPlugin-Watermark-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jurt-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jurt-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-web-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-web-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-core-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-core-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-dbcp-1.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-dbcp-1.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="fastjson-1.1.37.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/fastjson-1.1.37.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-log4j12-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/slf4j-log4j12-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ognl-2.7.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ognl-2.7.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/dom4j-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-proxool-4.1.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-proxool-4.1.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="juh-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/juh-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jdbc2005-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jdbc2005-1.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mail-1.4.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/mail-1.4.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-expression-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-expression-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xalan-2.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xalan-2.7.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-transaction-api_1.1_spec-1.0.1.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jboss-transaction-api_1.1_spec-1.0.1.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-aop-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-aop-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="avalon-logkit-2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/avalon-logkit-2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-beans-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-beans-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="core-3.1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/core-3.1.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-1.84.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jackson-1.84.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javassist-3.15.0-GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/javassist-3.15.0-GA.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-codec-1.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-codec-1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-httpclient-3.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-httpclient-3.0.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/slf4j-api-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-core-4.2.3.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-core-4.2.3.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-collections-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-tx-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-tx-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cglib-nodep-2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/cglib-nodep-2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="baidu-sdk-1.4.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/baidu-sdk-1.4.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javase-3.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/javase-3.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-test-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-test-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-api-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-logging-api-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ST4-4.0.8.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ST4-4.0.8.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aspectjrt-1.6.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/aspectjrt-1.6.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpcore-ab-4.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/httpcore-ab-4.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="antlr-3.5.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/antlr-3.5.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-mapper-asl-1.8.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jackson-mapper-asl-1.8.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jtds-1.2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jtds-1.2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="druid-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/druid-0.2.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xstream-1.4.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xstream-1.4.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="pinyin4j-2.5.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/pinyin4j-2.5.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ridl-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ridl-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jacob-1.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jacob-1.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-aspects-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-aspects-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-pool2-2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-pool2-2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.jeecgframework.fop-1.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/org.jeecgframework.fop-1.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-1.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-io-1.3.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-jdbc-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-jdbc-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ant-1.6.5.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ant-1.6.5.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-3.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/poi-3.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-lang3-3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-cli-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-cli-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xwork-core-2.1.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xwork-core-2.1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-logging-3.0.0.CR1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jboss-logging-3.0.0.CR1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.json-chargebee-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/org.json-chargebee-1.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="log4j-1.2.16.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/log4j-1.2.16.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aopalliance-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/aopalliance-1.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-5.1.31.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/mysql-connector-java-5.1.31.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-validator-annotation-processor-4.2.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-validator-annotation-processor-4.2.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jodd-3.3.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jodd-3.3.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="geronimo-spec-jms-1.1-rc4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/geronimo-spec-jms-1.1-rc4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aspectjweaver-1.6.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/aspectjweaver-1.6.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="antlr-2.7.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/antlr-2.7.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="security.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/security.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="classmate-0.5.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/classmate-0.5.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-ehcache-4.1.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-ehcache-4.1.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.1.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-logging-1.1.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-email-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-email-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xmlgraphics-commons-1.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xmlgraphics-commons-1.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpclient-4.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/httpclient-4.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-ooxml-3.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/poi-ooxml-3.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.jeecgframework.batik-all-1.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/org.jeecgframework.batik-all-1.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="stax-api-1.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/stax-api-1.0.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-fileupload-1.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-fileupload-1.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="codegenerate-3.4.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/codegenerate-3.4.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CKFinderPlugin-FileEditor-2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/CKFinderPlugin-FileEditor-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activation-1.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/activation-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpcore-4.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/httpcore-4.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ehcache-core-2.4.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ehcache-core-2.4.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpcore-nio-4.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/httpcore-nio-4.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xml-apis-ext-1.3.04.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xml-apis-ext-1.3.04.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ojdbc14-10.2.0.5.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/ojdbc14-10.2.0.5.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CKFinder-updateByAlexander-2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/CKFinder-updateByAlexander-2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="postgresql-9.1-903.jdbc4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/postgresql-9.1-903.jdbc4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-chain-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-chain-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="validation-api-1.0.0.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/validation-api-1.0.0.GA.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="proxool-0.9.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/proxool-0.9.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-1.7.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-beanutils-1.7.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="avalon-framework-api-4.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/avalon-framework-api-4.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-ooxml-schemas-3.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/poi-ooxml-schemas-3.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jedis-2.8.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jedis-2.8.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="httpmime-4.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/httpmime-4.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-context-support-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-context-support-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-scratchpad-3.9.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/poi-scratchpad-3.9.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xmlpull-1.1.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xmlpull-1.1.3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-pool-1.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/commons-pool-1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.quartz-1.6.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/org.quartz-1.6.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jdom-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jdom-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jstl-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jstl-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hamcrest-core-1.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hamcrest-core-1.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-vfs-3.1.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jboss-vfs-3.1.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="freemarker-2.3.19.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/freemarker-2.3.19.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xercesImpl-2.7.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xercesImpl-2.7.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jaxen-1.1.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/jaxen-1.1.6.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gson-2.2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/gson-2.2.4.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="minidao-1.4.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/minidao-1.4.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-commons-annotations-4.0.2.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/hibernate-commons-annotations-4.0.2.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="antlr-runtime-3.5.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/antlr-runtime-3.5.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="junit-4.11.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/junit-4.11.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javassist-3.7.ga.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/javassist-3.7.ga.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="json-lib-2.1-jdk15.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/json-lib-2.1-jdk15.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-webmvc-3.2.9.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/spring-webmvc-3.2.9.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xml-apis-1.3.04.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/jwx/libs/xml-apis-1.3.04.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="jwx"/>
+        <property name="java-output-path" value="/jwx/bin"/>
+    </wb-module>
+</project-modules>

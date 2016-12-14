@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<!-- 优先使用最新版本 IE 和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+	<meta content="yes" name="apple-mobile-web-app-capable"/>
+	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+	<meta name="format-detection" content="telphone=no, email=no"/>
+	<title>个人红包</title>
+	<link rel="stylesheet" type="text/css" href="../../src/css/hongbao/normalize.css">
+    <script src="../../src/js/lib/common.js"></script>
+</head>
+<body>
+	<article class="container">
+		<!--页头-->
+		<header class="header header-photo">
+			<figure class="photo p140-140">
+				<a href="#"><img src="../../res/images/1.jpg" alt="" /></a>
+			</figure>
+			<div class="header-msg">
+				某某某给您发送了一个流量红包
+			</div>
+		</header>
+		
+		<section class="main">
+			
+			<p class="main-text main-text-center">
+				祝您 : 恭喜发财,大吉大利!
+			</p>
+			
+			<section class="hbbox">
+				<a id="j-btn-chai" href="javascript:;"><img src="../../res/images/hb01.jpg" alt="" /></a>
+			</section>
+			
+			<p class="main-msg">
+				本红包的流量仅<span class="main-text-red">XXX省</span>的手机可以领取，在2016年2月10日前还可领取<span class="main-text-red">3</span>次从由此公众号发出的红包.
+			</p>
+			<p class="main-msg main-text-red">
+				请在2016年2月8日前领取，否则红包就失效了哦
+			</p>
+			
+		</section>
+		
+	</article>
+	
+	<!--弹框遮罩层-->
+	<div class="dialog-zz" id="j-dialog-zz"></div>
+	<!--拆红包-->
+	<div class="dialog-chai" id="j-dialog-chai">
+		<div class="dialog-msg1">某某某给您发送了一个流量红包</div>
+		<div class="dialog-msg1">祝您 : 恭喜发财,大吉大利!</div>
+		<div class="dialog-msg2">XX.XM江西省流量已存入您的流量账户，可充值到您的手机。<a href="#">去查看</a></div>
+		<div class="dialog-btn">
+			<a id="j-dialog-btn-1" href="javascript:;" class="dialog-btn-1">很开心</a>
+			<a href="#" class="dialog-btn-2">我也要发</a>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="../../src/js/zepto/zepto-all-min.js"></script>
+    <script type="text/javascript" src="../../src/js/zepto/car-popup.js"></script>
+	<script>
+	
+		// 后台输出的剩余抽奖次数
+		var JAVA_VALUE = {
+			num: 0
+		}
+	
+		$(function () {
+			
+			var $dialogzz = $("#j-dialog-zz");
+        	var $dialog = $("#j-dialog-chai");
+        	var $btn01 = $("#j-dialog-btn-1");
+			
+		     $('#j-btn-chai').click(function(){
+		        if(window.JAVA_VALUE.num && window.JAVA_VALUE.num >= 3) {
+		        	$('body').popup({
+			            title:'提示'
+			            ,message:'<h2>尊敬的用户您好:</h2><p>在活动时间2016年2月8日至2016年2月1日之间，您可以从江西佳讯领取三个红包，您的领取次数已用完,您也可以去赚免费流量发红包哦</p>'
+			            ,id:'pop-2'
+			            ,ok:"去赚流量"
+			            ,onOk:function(){
+			                // 确认按钮的回调函数
+			                console.log('ok');
+			            }
+			            ,cnacel:"取消"
+			            ,onCancel: function(){
+			            	console.log('cancel');
+			            }
+			        });
+		        }
+		        else {
+		        	window.JAVA_VALUE.num++;
+		        	$dialogzz.show();
+		        	$dialog.show();
+		        }
+		        return false;
+		    });
+		    
+		    $btn01.click(function(){
+		    	$dialogzz.hide();
+		        $dialog.hide();
+		    });
+		    
+
+		});
+	</script>
+
+</body>
+</html>

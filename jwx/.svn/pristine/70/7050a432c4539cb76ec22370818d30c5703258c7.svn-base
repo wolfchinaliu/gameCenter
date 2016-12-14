@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<!-- 优先使用最新版本 IE 和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+	<meta content="yes" name="apple-mobile-web-app-capable"/>
+	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+	<meta name="format-detection" content="telphone=no, email=no"/>
+	<title>猜灯米</title>
+	<link rel="stylesheet" type="text/css" href="../../src/css/zimi/normalize.css">
+    <script src="../../src/js/lib/common.js"></script>
+</head>
+
+
+<body>
+<table id="container">
+    <tbody>
+    <tr>
+        <td>
+            <header class="header header-makered">
+                <figure class="photo p140-140">
+                    <a href="#"><img src="${headImgUrl}" alt="" /></a>
+                </figure>
+                <ul class="header-msg-makered">
+                    <li>昵称：${nickname}</li>
+                    <li>手机号：${phoneNumber}</li>
+                    <li>省内流量：${provinceFlowValue}M <span class="plrem02">国内流量：${countryFlowValue}M</span></li>
+                </ul>
+            </header>
+
+        </td>
+    </tr>
+    <tr style="padding-bottom: 5px;">
+        <td class="container" colspan="2">
+            <div id="shake" style="margin-top: 10px;">
+                <img src="../../res/images/yaoyiyao/img01.png" class="shake_up" id="shakeup" style="margin-top: 10px;padding-top: 30px;padding-bottom: 5px;">
+               <img src="../../res/images/yaoyiyao/img01.png" class="shake_down" id="shakedown" style="margin-top: 10px;padding-top: 30px;padding-bottom: 5px;">
+               
+             </div>
+             <div id="loading" class="loading"></div>
+         </td>
+     </tr>
+     <tr>
+         <td>
+             <p class="main-text t-center">
+                 今天还可以摇<span class="main-text-red">5</span>次
+             </p>   
+        <td>
+    </tr>
+    <tr>
+        <td><p class="main-text ptrem02">
+            正确姿势：握紧手机，用力摇动3秒，苦练18年的麒麟臂终于派上用场了。
+        </p></td>
+    </tr>
+    <tr>
+        <td>
+            活动说明：
+            1、XXXXXXXXXXX
+                <dl class="yao-msg">
+                    <dt>活动说明</dt>
+                    <dd>1.不要玩游戏不要玩游戏</dd>
+                </dl>
+        </td>
+    </tr>
+    <tr id="cantshake" style="display:none">
+        <td class="controlbar" colspan="2">对不起，您的手机无法支持摇一摇！</td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+</body>
+</html>

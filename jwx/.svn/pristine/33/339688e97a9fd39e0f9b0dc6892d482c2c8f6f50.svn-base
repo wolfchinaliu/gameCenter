@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<!-- 优先使用最新版本 IE 和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+	<meta content="yes" name="apple-mobile-web-app-capable"/>
+	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+	<meta name="format-detection" content="telphone=no, email=no"/>
+	<title>猜灯谜答案</title>
+	<link rel="stylesheet" type="text/css" href="../../src/css/zimi/normalize.css">
+    <script src="../../src/js/lib/common.js"></script>
+</head>
+<body>
+	<article class="container">
+		<!--页头-->
+		<header class="header header-makered">
+			<figure class="photo p140-140">
+				<a href="#"><img src="../../res/images/1.jpg" alt="" /></a>
+			</figure>
+			<ul class="header-msg-makered">
+				<li>昵称：XXX</li>
+				<li>手机号：XXXXXXXXXXX</li>
+				<li>省内流量：XXX <span class="plrem02">全国流量：XXX</span></li>
+			</ul>
+		</header>
+		
+		<section class="main pbrem03">
+			
+			<p class="main-text main-text-red mbrem02 t-center">
+				此活动仅对江西省手机用户有效
+			</p>
+			
+			<section class="zimi-form">
+					<header class="zimi-form-header">
+						<ul class="zimi-form-header-list" id="j-zimi-header">
+							<li class="on">1/12题</li>
+							<li>2/12题</li>
+							<li>3/12题</li>
+							<li>4/12题</li>
+							<li>5/12题</li>
+							<li>6/12题</li>
+							<li>7/12题</li>
+							<li>8/12题</li>
+							<li>9/12题</li>
+							<li>10/12题</li>
+							<li>11/12题</li>
+							<li>12/12题</li>
+						</ul>
+					</header>
+					<div class="zimi-content">
+						<div class="zimi-box" id="j-zimi-box">
+							<!--一个谜题-->
+							<div class="zimi-item" style="display: block;">
+								<dl class="zimi-content-list">
+									<dt>谜面1：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>	
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面2：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面3：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面4：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面5：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面6：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面7：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面8：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面9：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面10：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面11：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+							<!--一个谜题-->
+							<div class="zimi-item">
+								<dl class="zimi-content-list">
+									<dt>谜面12：</dt>
+									<dd>有十只羊，九只蹲在羊圈，一只蹲在猪圈一只蹲在猪圈一只蹲在猪圈</dd>
+									<dt>谜目：</dt>
+									<dd>打一成语</dd>
+								</dl>
+								<div class="zimi-content-box">
+									<input type="text" class="ui-text" value="抑扬顿挫（一羊蹲错）" readonly="readonly" />
+								</div>
+							</div>
+						</div>
+						<div class="zimi-content-btn pbrem03">
+							<a id="j-btn-prev" href="javascript:;" class="ui-btn ui-btn-3" style="margin-right: 0.6rem;">上一题</a>
+							<a id="j-btn-next" href="javascript:;" class="ui-btn ui-btn-4">下一题</a>
+						</div>
+						
+					</div>
+			</section>
+			
+			
+		</section>
+		
+	</article>
+	
+	<script type="text/javascript" src="../../src/js/zepto/zepto-all-min.js"></script>
+    <script type="text/javascript" src="../../src/js/zepto/car-popup.js"></script>
+    <script type="text/javascript" src="../../src/js/zimi/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+﻿@charset "UTF-8";
+/* 个人端首页 */
+
+/*banner*/
+.top-banner{ width: 100%; min-width: 1000px; height: 540px;}
+.top-banner-box{position:relative;height:100%;overflow:hidden; top: 0; left: 0; z-index: 10;}
+.top-banner-box li{position:absolute;z-index:100;left:0;height:0;width:100%;height:100%; min-width: 1190px;}
+.top-banner-box li:first-child{z-index:101;}
+.top-banner-code { width: 224px; height: 279px; position: absolute; right: 0; bottom: -30px;}
+.top-banner-w{position:relative; width: 1000px; margin: 0 auto;}
+.top-banner-img{width: 1000px;height:540px;display:block;position:relative;top:0;left:0;}
+.top-banner-nav {position:relative;z-index:110; width: 700px; margin: 0 auto; height:14px;overflow:hidden;top:-27px;font-size:0; text-align: right; padding-right: 260px;}
+.top-banner-nav i{display:inline-block;width:12px;height:12px;border: 1px solid #fff; margin-right:5px; border-radius: 6px; cursor: pointer;}
+.top-banner-nav i.on{background-color:#fff;}
+
+/*count*/
+.index-count { padding-top: 80px;}
+.index-count li { width: 334px; float: left; text-align: center;}
+.index-count li p { height: 30px; line-height: 30px; padding-top: 30px; font-size: 24px; color: #01c45c;}
+.index-count li span { display: block; height: 20px; line-height: 20px; padding-top: 10px; color: #01c45c;}
+
+/*teacher*/
+.teacher { padding-top: 100px;}
+.teacher-head { text-align: center;}
+.teacher-head span { display: inline-block; height: 42px; padding: 0 10px; line-height: 42px; border-bottom: 1px solid #d4d4d4; color: #01c45c; font-size: 18px;}
+.teacher-head p { height: 20px; line-height: 20px; padding-top: 10px; font-size: 14px; color: #000;}
+
+.teacher-list { width: 1000px; margin-left: 1px; padding-top: 50px; overflow: hidden;}
+.teacher-item { width: 200px; float: left;}
+.teacher-list .ui-photo { margin: 0 auto;}
+.teacher-item-name,.teacher-item-language,.teacher-item-find { height: 24px; line-height: 24px; text-align: center;}
+.teacher-item-name { padding-top: 10px;}
+.teacher-item-language { color: #ababab;}
+.teacher-item-find { padding-top: 5px;}
+
+.teacher-btn { padding-top: 70px; text-align: center;}
+.teacher-btn .btns { width: 150px; height: 40px; line-height: 40px; font-size: 18px;}
+
+/*flow*/
+.flow { padding-top: 90px; padding-bottom: 100px;}
+.flow-head { font-size: 18px; text-align: center; color: #797a7a;}
+.flow-list { padding-top: 50px;}
+.flow-list li { width: 200px; float: left; text-align: center;}
+.flow-list li i { display: block; height: 40px; line-height: 40px; font-size: 30px; color: #9c9c9c;}
+.flow-list li p { height: 30px; line-height: 30px; padding-top: 20px; font-size: 18px;  color: #01c45c;}
+.flow-list li span { display: block; font-size: 14px; height: 20px; line-height: 20px; padding-top: 10px;}
+
+/*************************************
+ * generic styling for ALS elements
+ ************************************/
+
+.als-container {
+    position: relative;
+    width: 100%;
+    margin: 0px auto;
+    z-index: 0;
+}
+
+.als-viewport {
+    position: relative;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.als-wrapper {
+    position: relative;
+    list-style: none;
+}
+
+.als-item {
+    position: relative;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+}
+
+.als-prev, .als-next {
+    position: absolute;
+    cursor: pointer;
+    clear: both;
+}
+/*************************************
+ * specific styling for #demo3
+ ************************************/
+
+#j-teacher-list {
+    margin: 40px auto;
+}
+
+#j-teacher-list .als-item {
+    min-height: 120px;
+    min-width: 200px;
+    text-align: center;
+}
+
+#j-teacher-list .ui-photo {
+    margin: 0 auto;
+}
+
+#j-teacher-list .als-item img {
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+#j-teacher-list .als-prev, #j-teacher-list .als-next {
+    top: 40px;
+    display: none;
+}
+
+#j-teacher-list .als-prev {
+    left: 200px;
+}
+
+#j-teacher-list .als-next {
+    right: 200px;
+}

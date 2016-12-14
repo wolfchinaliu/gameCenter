@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <!-- 优先使用最新版本 IE 和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <title>流量门户</title>
+    <link rel="stylesheet" type="text/css" href="../../src/css/hongbao/normalize.css">
+    <script src="../../src/js/lib/common.js"></script>
+</head>
+<body>
+    <article class="container">
+        <!--轮播-->
+        <section class="ui-slider" id="j-scroll">
+            <figure class="scroll-img">
+                <a href="#"><img src="../../res/images/1.jpg" lazyload="../../res/images/1.jpg" alt="" /></a>
+                <figcaption>1分享得流量，优惠多多</figcaption>
+            </figure>
+            <figure class="scroll-img">
+                <a href="#"><img src="../../res/images/1.jpg" lazyload="../../res/images/1.jpg" alt="" /></a>
+                <figcaption>2分享得流量，优惠多多</figcaption>
+            </figure>
+            <figure class="scroll-img">
+                <a href="#"><img src="../../res/images/1.jpg" lazyload="../../res/images/1.jpg" alt="" /></a>
+                <figcaption>3分享得流量，优惠多多</figcaption>
+            </figure>
+            <figure class="scroll-img">
+                <a href="#"><img src="../../res/images/1.jpg" lazyload="../../res/images/1.jpg" alt="" /></a>
+                <figcaption>4分享得流量，优惠多多</figcaption>
+            </figure>
+        </section>
+        <!--导航-->
+        <nav class="nav">
+            <ul class="nav-list clx">
+                <li>
+                    <a href="#" class="nav-btn">
+                        <img src="../../res/images/1.jpg" alt="" />
+                        <span>签到领流量</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-btn">
+                        <img src="../../res/images/1.jpg" alt="" />
+                        <span>分享得流量</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-btn">
+                        <img src="../../res/images/1.jpg" alt="" />
+                        <span>流量管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-btn">
+                        <img src="../../res/images/1.jpg" alt="" />
+                        <span>优惠卷管理</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </article>
+
+    <script type="text/javascript" src="../../src/js/zepto/zepto-all-min.js"></script>
+    <script type="text/javascript" src="../../src/js/zepto/slider.js"></script>
+    <script>
+        $(function () {
+            $('#j-scroll').slider({ loop: true, autoPlay: false, showArr: false });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+.flow-list{
+	padding: 3rem 1.2rem;
+}
+.nav-tab {
+	display: box;
+	display: -webkit-box;
+	margin-bottom: 1.4rem;
+}
+.nav-tab > div {
+	-webkit-box-flex:1;
+	box-flex:1;
+	width: 100%;
+	margin: 0 1.5rem;
+}
+.nav-tab > div:first-child{
+	margin-left: 0;
+}
+.nav-tab > div:last-child{
+	margin-right: 0;
+}
+.nav-tab > div > a {
+	width: 100%;
+	font-size: 1.7rem;
+}
+.table-list {
+	min-height: 30rem;
+	margin: 0 auto;
+	border: 1px solid #e1e1e1;
+	border-radius: .4rem;
+	padding: 0 1.5rem;
+}
+.table-list ul {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.table-list li {
+	display: table-row;
+}
+.table-list .table-cell > div {
+	width: 100%;
+	display: table-cell;
+	font-size: 1.4rem;
+	padding:1rem 0;
+	vertical-align: middle;
+}
+.table-list li.table-cell > div{
+	border-bottom: 1px #d9d9d9 solid;
+}
+.table-list .table-cell > div:last-child {
+	color: #f20c00;
+	width: 80px;
+}
+.table-list .table-cell > div:first-child span {
+	color: #646464;
+	display: inline-block;
+	margin-bottom: .6rem;
+}
+.table-list	.table-cell > div:first-child p {
+	color: #aaaaaa;
+}
+.table-list .drop {
+	max-height: 0px;
+	border-bottom: 1px solid #cdcdcd;
+	-webkit-transition: max-height 0.6s;
+	transition: max-height 0.6s;
+	overflow: hidden;
+}
+.drop.expand {
+	max-height: 18rem;
+}
+.progress{
+	display: box;
+	display: -webkit-box;
+	padding: 1rem 0rem 3rem;
+}
+.progress > div{
+	-webkit-box-flex:1;
+	box-flex:1;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+.progress > div:before{
+	content: '';
+	border-top: 2px #ff0000 dashed;
+	width: 100%;
+	position: absolute;
+	left: 50%;
+	top: .9rem;
+}
+.progress > div:last-child:before{
+	display: none;
+}
+.progress > div > span{
+	background: #ffffff;
+	border:1px #ff0000 solid;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	display: inline-block;
+	padding: 1px;
+	position: relative;
+	width: 1.2rem;
+	height: 1.2rem;
+}
+.progress > div > span:before{
+	content: '';
+	background-color: #ff0000;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	width: .8rem;
+	height: .8rem;
+	position: absolute;
+	left: 1px;
+	top: 1px;
+}
+.progress > div p{
+	color: #aaaaaa;
+	font-size: 1.2rem;
+}

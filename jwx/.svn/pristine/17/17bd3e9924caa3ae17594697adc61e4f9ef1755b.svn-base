@@ -1,0 +1,162 @@
+#banner {
+	MIN-WIDTH: 1000px; HEIGHT: 533px;
+}
+#focus {
+	BACKGROUND: #7ac943; HEIGHT: 500px; OVERFLOW: hidden;width: 100%;
+}
+#focus LI {
+	HEIGHT: 500px
+}
+#focus LI A {
+	WIDTH: 100%; DISPLAY: block; HEIGHT: 500px
+}
+#ftrigger {
+	PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 11px; WIDTH: 300px; PADDING-RIGHT: 11px; HEIGHT: 22px; PADDING-TOP: 11px
+}
+#ftrigger A {
+	TEXT-INDENT: -9999px; MARGIN: 4px 8px; WIDTH: 12px; DISPLAY: inline-block; BACKGROUND: url(../../images/green/btn-ftrigger.png) no-repeat 0px 0px; FLOAT: left; HEIGHT: 12px; FONT-SIZE: 0px; OVERFLOW: hidden; CURSOR: pointer
+}
+#ftrigger A.current {
+	BACKGROUND-POSITION: 0px -12px
+}
+#info {
+	POSITION: relative; LINE-HEIGHT: 30px; HEIGHT: 40px; FONT-SIZE: 17px; OVERFLOW: hidden
+}
+#info LI {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+}
+.infoBtn {
+	POSITION: absolute; RIGHT: 0px; TOP: 5px
+}
+.infoBtn A {
+	TEXT-INDENT: -9999px; WIDTH: 40px; DISPLAY: inline-block; BACKGROUND: url(../../images/green/infoBtn_bg.png) 0px 0px; FLOAT: left; HEIGHT: 30px; CURSOR: pointer
+}
+.infoBtn #infoBtnR {
+	BACKGROUND-POSITION: right 0px
+}
+.infoBtn #infoBtnL:hover {
+	BACKGROUND-POSITION: 0px -30px
+}
+.infoBtn #infoBtnR:hover {
+	BACKGROUND-POSITION: right -30px
+}
+#info .onec STRONG {
+	COLOR: #44af35
+}
+#info .announ {
+	PADDING-LEFT: 40px; BACKGROUND: url(../../images/green/speaker.png) no-repeat 0px center
+}
+.announ SPAN {
+	COLOR: #999
+}
+#highlight {
+	MARGIN-TOP: 10px; HEIGHT: 630px; OVERFLOW: visible
+}
+#highlight LI {
+	Z-INDEX: 0; POSITION: relative; MARGIN: 0px 15px 10px 0px; WIDTH: 188px; FLOAT: left; HEIGHT: 200px
+}
+#highlight LI.hover {
+	BACKGROUND: url(../../images/green/block_bg.png) no-repeat; CURSOR: pointer
+}
+#highlight LI H3 {
+	LINE-HEIGHT: 28px; HEIGHT: 140px; FONT-SIZE: 20px; FONT-WEIGHT: normal
+}
+#highlight LI H3 A {
+	Z-INDEX: 100; POSITION: absolute; TEXT-ALIGN: center; WIDTH: 188px; DISPLAY: block; HEIGHT: 185px; PADDING-TOP: 15px; TOP: 0px; LEFT: 0px
+}
+#highlight LI H3 IMG {
+	WIDTH: 86px; BACKGROUND: #ccc; HEIGHT: 86px; border-radius: 43px
+}
+#highlight LI H3 SPAN {
+	DISPLAY: block; _padding-top: 7px
+}
+#highlight LI P {
+	Z-INDEX: 10; TEXT-ALIGN: center; LINE-HEIGHT: 22px; COLOR: #888; FONT-SIZE: 13px
+}
+#highlight LI.mr0 {
+	MARGIN-RIGHT: 0px
+}
+.moreBtn {
+	TEXT-ALIGN: center; LINE-HEIGHT: 40px; MARGIN: 0px auto 20px; WIDTH: 220px; HEIGHT: 40px
+}
+.moreBtn A {
+	TEXT-INDENT: 26px; WIDTH: 220px; DISPLAY: block; BACKGROUND: url(../../images/green/moreBtn_bg.png) #3fa9f5 no-repeat 30px -40px; HEIGHT: 40px; COLOR: #fff; FONT-SIZE: 17px; border-radius: 5px
+}
+.moreBtn A:hover {
+	BACKGROUND-COLOR: #76cbff; COLOR: #fff; box-shadow: 0 0 15px #3fa9f5
+}
+.moreBtn A.moreCaseBtn {
+	BACKGROUND-POSITION: 30px -120px
+}
+#caseBox {
+	MARGIN: 0px auto 15px; WIDTH: 1066px; HEIGHT: 300px
+}
+.scrollable {
+	POSITION: relative; WIDTH: 1000px; FLOAT: left; HEIGHT: 300px; OVERFLOW: hidden
+}
+.scrollable .items {
+	POSITION: absolute; WIDTH: 20000em; CLEAR: both
+}
+.items DIV {
+	WIDTH: 1000px; WHITE-SPACE: nowrap; FLOAT: left; HEIGHT: 300px; OVERFLOW: hidden; _width: 1005px
+}
+.items DIV .a {
+	BORDER-BOTTOM: #e6e6e6 1px solid; BORDER-LEFT: #e6e6e6 1px solid; DISPLAY: inline-block; FLOAT: left; BORDER-TOP: #e6e6e6 1px solid; MARGIN-RIGHT: 15px; BORDER-RIGHT: #e6e6e6 1px solid; border-radius: 3px
+}
+.items DIV .a:hover {
+	BORDER-BOTTOM: #3fa9f5 1px solid; BORDER-LEFT: #3fa9f5 1px solid; BACKGROUND: #3fa9f5; BORDER-TOP: #3fa9f5 1px solid; BORDER-RIGHT: #3fa9f5 1px solid
+}
+.items DIV .mr0.a {
+	MARGIN-RIGHT: 0px
+}
+.scrollable IMG {
+	PADDING-BOTTOM: 4px; PADDING-LEFT: 4px; WIDTH: 178px; PADDING-RIGHT: 4px; FLOAT: left; HEIGHT: 290px; PADDING-TOP: 4px
+}
+A.btn {
+	TEXT-INDENT: -9999px; WIDTH: 33px; DISPLAY: block; BACKGROUND: url(../../images/green/caseBtn_bg.png) no-repeat 0px center; HEIGHT: 300px; FONT-SIZE: 0px; CURSOR: pointer
+}
+A.prev {
+	BACKGROUND-POSITION: 0px center
+}
+A.prev:hover {
+	BACKGROUND-POSITION: -33px center
+}
+A.next {
+	BACKGROUND-POSITION: right center
+}
+A.next:hover {
+	BACKGROUND-POSITION: -66px center
+}
+.slider-carousel {
+	
+}
+.slider .inner {
+	MIN-WIDTH: 1000px
+}
+.slider-carousel {
+	POSITION: relative
+}
+.slider-carousel .item {
+	HEIGHT: 533px
+}
+.slider-carousel .slidesjs-navigation {
+	Z-INDEX: 100; POSITION: absolute; TEXT-INDENT: -9999em; WIDTH: 42px; DISPLAY: block; HEIGHT: 42px; TOP: 160px; opacity: 0
+}
+.slidesjs-previous {
+	BACKGROUND: url(../../images/green/prev.png) no-repeat; LEFT: 10px
+}
+.slidesjs-next {
+	BACKGROUND: url(../../images/green/next.png) no-repeat; RIGHT: 10px
+}
+.slidesjs-pagination {
+	MARGIN-TOP: -255px; ZOOM: 1; MARGIN-LEFT: 533px; OVERFLOW: hidden
+}
+.slidesjs-pagination-item A {
+	BACKGROUND-COLOR: #ade8d2; TEXT-INDENT: -9999em; WIDTH: 16px; FLOAT: left; HEIGHT: 17px; MARGIN-RIGHT: 10px; border-radius: 20px
+}
+.slidesjs-pagination-item A:hover {
+	BACKGROUND-COLOR: #fff
+}
+.slidesjs-pagination-item A.active {
+	BACKGROUND-COLOR: #fff
+}

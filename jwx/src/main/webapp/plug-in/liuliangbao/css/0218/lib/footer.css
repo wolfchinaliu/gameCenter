@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* 墨斗鱼公用footer */
+
+.footer { width: 100%; min-width: 1170px; padding-top: 30px; border-top: solid 5px #1ebc94; background-color: #d4d4db;}
+.footer-box { width: 1170px; margin: 0 auto; font-size: 14px; color: #666;}
+.footer-aboutus { width: 206px; padding: 0 25px 0 65px; height: 170px; border-left: solid 1px #666; border-right: solid 1px #666;
+	 float: left;}
+.footer-aboutus h2 { height: 34px; line-height: 34px;}
+.footer-aboutus a { color: #666; display: inline-block; width: 103px; height: 34px; line-height: 34px; float: left;}
+.footer-aboutus a:hover { text-decoration: underline;}
+.footer-weixin { width: 574px; float: left; border-right: solid 1px #666;}
+.footer-weixin-title { padding-left: 140px; height: 30px; line-height: 30px;}
+.footer-weixinbox { padding-top: 10px; padding-left: 140px;}
+.footer-p1,.footer-p2 { width: 90px; height: 130px; float: left;}
+.footer-p1 { padding-right: 90px;}
+.footer-p1 span,.footer-p2 span { display: block; height: 30px; line-height: 30px; text-align: center;}
+.footer-links { border-left: none; float: right;}
+.footer-copyright { height: 20px; line-height: 20px; text-align: center; padding: 10px 0;}
+/*goTop*/
+.gotop { width: 31px; position: fixed; right: 20px; bottom: 40px; z-index: 1000; display: none;}
+.gotop-btn { width: 31px; height: 30px; margin-top: 10px; cursor: pointer;}
+.gotop-btn:hover { opacity: 0.8; filter: alpha(opacity=80);}
+.footer-right-ma { width: 31px; height: 30px;}
+.footer-ma-img { width: 216px; height: 249px; position: absolute; right: 0px; bottom: 80px; display: none;}
+.footer-right-ma:hover .footer-ma-img { display: block;}
+.footer-btn-ma { width: 31px; height: 30px;}

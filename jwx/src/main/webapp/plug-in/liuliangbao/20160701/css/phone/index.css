@@ -1,0 +1,25 @@
+
+.flowcard { background-color: #ebebeb; width: 7.5rem; margin: 0 auto; min-height: 100%;}
+.flowcard-header { width: 7.5rem; height: 4.5rem; background: url(../../images/flowcard/bg.png) no-repeat left top; background-size: contain; position: relative; left: 0; top: 0;}
+.flowcard-logo { width: 100%; position: absolute; top: 2rem; left: 0; text-align: center;}
+.flowcard-logo a { display: block; width: 1.6rem; height: 1.6rem; margin: 0 auto; overflow: hidden; background-color: #fff;}
+.flowcard-logo a img { width: 100%;}
+.flowcard-logo span { display: inline-block; height: 0.8rem; line-height: 0.8rem; font-size: 0.34rem; color: #333;}
+
+.flowcard-section { padding: 0 0.3rem; font-size: 0.28rem; line-height: 1.8em;}
+.flowcard-btn {}
+.flowcard-btn-1 { display: block; width: 92%; height: 0.78rem; line-height: 0.78rem; background-color: #E96356; color: #fff; margin: 0 auto; font-size: 0.34rem; text-decoration: none; text-align: center; word-spacing: 0.2rem; letter-spacing: 0.2rem;}
+
+.form-box { width: 92%; padding-top: 0.7rem; margin: 0 auto;}
+.form-item { padding-bottom: 0.3rem; position: relative; top: 0; left: 0;}
+.form-item p { border-bottom: solid 1px #b8b8b8; margin-left: 0.6rem;}
+.input-text { height: 0.78rem; line-height: 0.78rem; padding: 0 0.1rem 0 0.1rem; border: none; font-size: 0.3rem; width: 6rem; background: rgba(0,0,0,0); }
+.form-icon { display: block; position: absolute; background-size: contain; z-index: 10;}
+.form-icon-1 { width: 0.29rem; height: 0.4rem; left: 0.16rem; top: 0.3rem; background-image: url(../../images/flowcard/icon-1.png);}
+.form-icon-2 { width: 0.29rem; height: 0.36rem; left: 0.16rem; top: 0.28rem;background-image: url(../../images/flowcard/icon-2.png);}
+.form-item p { padding-top: 0.1rem; color: #E96356; font-size: 0.24rem;}
+
+.from-btn {border: none; width: 2.8rem; height: 0.78rem; line-height: 0.78rem; text-align: center; background-color: #E96356; color: #fff; font-size: 0.32rem;}
+.from-btn-1 { float: right; background-color: rgba(0,0,0,0); color: #E96356;}
+.from-btn-2 { width: 100%;}
+.receive-msg { font-size: 0.24rem; color: #fa6958; text-align: center;}

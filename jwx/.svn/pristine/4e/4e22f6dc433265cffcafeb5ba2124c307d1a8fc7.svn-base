@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+
+	<!-- 定时任务配置 scheduler 方式 注解 暂时不支持动态更新 -->
+	<context:component-scan base-package="org.jeecgframework.core.timer" />
+	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:annotation-driven executor="executor" scheduler="scheduler" />
+
+	<!-- 定时任务配置 quartz 可配置到管理界面 -->
+	<bean id="taskDemoServiceTaskJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="removeExpiredFlowTask" />
+		<property name="targetMethod" value="schedualJob" />
+		<property name="concurrent" value="true" />
+	</bean>
+
+	<bean id="taskDemoServiceTaskCronTrigger" class="org.jeecgframework.core.timer.DataBaseCronTriggerBean">
+		<property name="jobDetail" ref="taskDemoServiceTaskJob" />
+		<property name="cronExpression" value="0 0/30 * * * ?" />
+	</bean>
+
+	<!-- 定时任务调度器 -->
+	<bean id="schedulerFactory" lazy-init="false" autowire="no"
+		class="org.jeecgframework.core.timer.DataBaseSchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="taskDemoServiceTaskCronTrigger" />
+			</list>
+		</property>
+	</bean>
+
+	<task:scheduled-tasks>
+		<!-- 安全规则日、周、月、年规则的生效 -->
+		<task:scheduled ref="weixinRuleJob" method="beginDayRules" cron="0 0 0 * * ?" />
+		<task:scheduled ref="weixinRuleJob" method="beginWeekRules" cron="0 0 0 * * 1" />
+		<task:scheduled ref="weixinRuleJob" method="beginMonthRules" cron="0 0 0 1 * ?" />
+		<task:scheduled ref="weixinRuleJob" method="beginYearRules" cron="0 0 0 1 1 ?" />
+		<!-- 流量接口，订单的超时处理 -->
+		<task:scheduled ref="weixinBusinessJob" method="setBusinessTimeout" cron="0 * * * * ?" />
+		<!-- 流量卡过期 -->
+		<task:scheduled ref="flowCardJob" method="expireFlowCard" cron="0 0/20 * * * ?" />
+		<!-- 每人签到次数重置 -->
+		<task:scheduled ref="resetCurrentPeopleTask" method="schedualJob" cron="0 0 0 * * ?" />
+	    <!-- 运营数据 -->
+	    <!-- <task:scheduled ref="TimeFixedSend" method="schedualJob" cron="0 0 0/3 * * ?" />
+		<task:scheduled ref="TimeFixedSend" method="weekSchedualJob" cron="0 0 0 * * 1" />
+		<task:scheduled ref="TimeFixedSend" method="monthSchedualJob" cron="0 0 0 1 * ?" /> -->
+		<!-- 广告发布状态的更改 -->
+		<task:scheduled ref="advertisementJob" method="startAd" cron="0 * * * * ?" />
+		<task:scheduled ref="advertisementJob" method="finishAd" cron="0 * * * * ?" />
+		<!-- 商家列表定时任务 -->
+		<task:scheduled ref="TimeActiveState" method="queryMerchantList" cron="0 0/20 * * * ?" />
+        <task:scheduled ref="shareBindFlowTask" method="schedualJob" cron="0/5 * * * * ?" />
+        
+        <task:scheduled ref="weixinActivityJob" method="beginDayRules" cron="0 0 0 * * ?" />
+		<task:scheduled ref="weixinActivityJob" method="beginWeekRules" cron="0 0 0 * * 1" />
+		<task:scheduled ref="weixinActivityJob" method="beginMonthRules" cron="0 0 0 1 * ?" />
+		<!-- 手工赠送流量定时任务 -->
+		<task:scheduled ref="giveFlowJob" method="giveFlowToUser" cron="0 0/2 * * * ?" />
+	</task:scheduled-tasks>
+</beans>

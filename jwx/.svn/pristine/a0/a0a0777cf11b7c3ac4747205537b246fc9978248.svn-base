@@ -1,0 +1,52 @@
+﻿@charset "UTF-8";
+
+body { background: #ebebeb;}
+.list {}
+.list h1 { height: 0.92rem; line-height: 0.92rem; text-indent: 0.37rem; font-size: 0.34rem; background-color: #f9f9f9;}
+.list-box {}
+.list-list {}
+.list-list > li { margin-top: 0.22rem; background: url(../images/bg01.jpg);}
+.list-list> li > a { display: block; color: #333;}
+.list-img { width: 2.92rem; height: 2.13rem; float: left;}
+.list-img img { width: 100%; height: 100%;}
+.list-msg { width: 4.22rem; float: right;}
+.list-msg dt { height: 0.92rem; line-height: 0.92rem; overflow: hidden; font-size: 0.34rem;}
+.list-msg dd { overflow: hidden;}
+.list-msg dd > span { display: inline-block; min-width: 1.78rem; height: 0.42rem; line-height: 0.42rem; border: solid 1px #e96357; 
+color: #e96357; font-size: 0.24rem; margin: 0 0.2rem 0.1rem 0; float: left; text-align: center; border-radius: 0.05rem;}
+
+/* details */
+.details {}
+.details-img { width: 7.5rem;}
+.details-img > img { width: 100%;}
+.details-nav { padding: 0.6rem 0.3rem 0 0.3rem; height: 2rem; background: url(plug-in/acctlist/images/bg01.jpg);}
+.details-nav > ul {}
+.details-nav li {width: 25%; float: left;}
+.details-nav a { display: block; text-decoration: none; color: #3a3a3a;}
+.details-nav figure { display: block; width: 1rem; height: 1rem; margin: 0 auto;}
+.details-nav figure > img { width: 100%; height: 100%;}
+.details-nav p { padding-top: 0.2rem; text-align: center; font-size: 0.26rem; color: #3A3A3A;}
+.details-nav li.none p { color: #c6c6c6;}
+.details-address {margin-top: 0.2rem; padding: 0 0.3rem; font-style: normal; background: url(plug-in/acctlist/images/btn01.png);}
+.details-address ul { padding-bottom: 0.4rem;}
+.details-address li { padding-top: 0.4rem; color: #3a3a3a; font-size: 0.3rem; line-height: 0.4rem;}
+i { display: inline-block;}
+i.phone { width: 0.28rem; height: 0.28rem; margin-right: 0.22rem; background: url(../images/icon01.png) no-repeat left top; background-size: contain;}
+i.address { width: 0.24rem; height: 0.31rem; margin-right: 0.26rem; background: url(../images/icon02.png) no-repeat left top;  background-size: contain; vertical-align: middle;}
+i.introduce { width: 0.35rem; height: 0.30rem; margin-right: 0.15rem; background: url(../images/icon03.png) no-repeat left top;  background-size: contain; vertical-align: -0.03rem;}
+.details-introduce {margin-top: 0.2rem; padding: 0.3rem; min-height: 2rem; background: url(../images/bg01.jpg);}
+.details-introduce h2 { font-size: 0.3rem; height: 0.5rem; line-height: 0.5rem;}
+.details-introduce p { padding-left: 0.5rem; font-size: 0.26rem; color: #5a5a5a; line-height: 1.8em;}
+
+.footer2 {}
+.footer2 a.a1 { display: block; width: 100%; height: 0.86rem; line-height: 0.86rem; text-align: center; border-top: dashed 1px #CDCDCD;  border-bottom: dashed 1px #CDCDCD; color: #1ca601; font-size: 0.32rem; text-decoration: none; background: url(plug-in/acctlist/images/bg01.jpg);}
+.footer2 a.a2 { display: block; width: 100%;}
+.footer2 a.a2 img { width: 100%; margin-bottom:1rem;}
+.footer-nav { margin-top: 0.25rem; width: 100%; height: 1rem; line-height: 1rem; text-align: center; background-color: #fa6958; color: #fff; font-size: 0.34rem; position:fixed; bottom:0}
+.footer-nav a { display: block; width: 100%; height: 100%; background-color: none; text-decoration: none; color: #fff;}
+.footer-nav a:hover,.footer-nav a:active { background-color: #ee5341;}
+.footer-nav > li { width: 50%; float: left; height: 1rem; box-sizing: border-box; border-left: solid 1px #fff;}
+.footer-nav > li:nth-child(3) { float: right;}
+.footer-nav > li:first-child {border: none;}
+
+#allmap {margin-bottom:1rem; height:91%}

@@ -1,0 +1,24 @@
+﻿@charset "UTF-8";
+
+.zhuanpan {}
+.circle { width: 7.5rem; height: 5.3rem; background: url(../../images/zhuanpan/bg1.jpg) no-repeat left top; background-size: contain; position: relative; top: 0; left: 0;}
+.btn-xq { display: block; width: 1.45rem; height: 0.44rem; line-height: 0.44rem; text-align: center; font-size: 0.24rem; color: #FFFFFF; background-color: #f46756; transform: skew(-20deg); text-decoration: none; position: absolute; right: 0.3rem; top: 0.6rem;}
+.circle-box { width: 4.5rem; height: 4.5rem; position: absolute; top: 0.7rem; left: 1.5rem;}
+.circle-outer { width: 100%; height: 100%; position: relative; left: 0; top: 0; z-index: 1;}
+.circle-outer-img { width: 100%; height: 100%;}
+.circle-outer-img img { width: 100%; height: 100%;}
+.circle-inner { width: 1rem; height: 1.55rem; position: absolute; top: 1.2rem; left: 1.78rem; z-index: 10;}
+.circle-inner-btn { width: 100%; height: 100%;}
+.circle-inner-btn img { width: 100%; height: 100%;}
+
+.zhuanpan-msg { font-size: 0.28rem; text-align: center; height: 0.6rem; line-height: 0.6rem; position: relative; top: 0; left: 0;}
+.zhuanpan-msg-tips { margin-right: 0.3rem; display: inline-block; position: absolute; top: 0.13rem; right: 0.3rem; background-color: #DDDDDD; border-radius: 0 0.1rem 0.1rem 0; height: 0.28rem; font-size: 0.24rem; line-height: 0.28rem; padding: 0 0.15rem 0 0.1rem;}
+.zhuanpan-msg-tips img { width: 0.28rem; height: 0.28rem; position: absolute; top: 0; left: -0.25rem;}
+.zhuanpan-msg-tips em { font-style: normal;}
+
+/* 滚动 */
+.zhuanpan-gd { width: 6.9rem; height: 1.23rem; background: url(../../images/zhuanpan/bg3.png) no-repeat left top; margin: 0 auto; background-size: contain; position: relative; top: 0; left: 0; overflow: hidden;
+    margin-top: 0.1rem;}
+.zhuanpan-list { width: 6.1rem; padding-left: 0.3rem; position: absolute; top: 0; left: 0;}
+.zhuanpan-list li { height: 0.4rem; line-height: 0.4rem; text-align: center; font-size: 0.26rem;}
+.zhuanpan-list li span { float: right; color: #898989; font-size: 0.2rem;}

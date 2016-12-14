@@ -1,0 +1,85 @@
+
+.flowcard { background-color: #ebebeb; width: 7.5rem; margin: 0 auto; min-height: 100%;}
+.flowcard-header { width: 7.5rem; height: 4.5rem; background: url(../images/bg.png) no-repeat left top; background-size: contain; position: relative; left: 0; top: 0;}
+.flowcard-logo { width: 100%; position: absolute; top: 2rem; left: 0; text-align: center;}
+.flowcard-logo a { display: block; width: 1.6rem; height: 1.6rem; margin: 0 auto; overflow: hidden; background-color: #fff;}
+.flowcard-logo a img { width: 100%;}
+.flowcard-logo span { display: inline-block; height: 0.8rem; line-height: 0.8rem; font-size: 0.34rem; color: #333;}
+
+.flowcard-section { padding: 0 0.2rem; font-size: 0.30rem; line-height: 1.8em;}
+.flowcard-btn {}
+.flowcard-btn-1 { display: block; width: 92%; height: 0.78rem; line-height: 0.78rem; background-color: #E96356; color: #fff; margin: 0 auto; font-size: 0.34rem; text-decoration: none; text-align: center; word-spacing: 0.2rem; letter-spacing: 0.2rem;}
+
+.form-box { width: 92%; padding-top: 0.7rem; margin: 0 auto;}
+.form-item { padding-bottom: 0.3rem; position: relative; top: 0; left: 0;}
+.input-text { height: 0.78rem; line-height: 0.78rem; padding: 0 0.1rem 0 0.8rem; border: none; background-color: #fff; color: #E96356;
+    font-size: 0.32rem; width: 6rem;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+.form-icon { display: block; position: absolute; background-size: contain; z-index: 10;}
+.form-icon-1 { width: 0.29rem; height: 0.4rem; left: 0.16rem; top: 0.19rem; background-image: url(../images/icon-1.png);}
+.form-icon-2 { width: 0.29rem; height: 0.36rem; left: 0.16rem; top: 0.21rem;background-image: url(../images/icon-2.png);}
+.form-item p { padding-top: 0.1rem; color: #E96356; font-size: 0.24rem;}
+
+.from-btn {border: none; width: 2.8rem; height: 0.78rem; line-height: 0.78rem; text-align: center; background-color: #E96356;
+    color: #fff; font-size: 0.32rem;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;}
+.from-btn-1 { float: right;}
+.from-btn-2 { width: 100%;}
+
+/*dialog*/
+.flowcard-dialog {width: 5rem; padding: 0.55rem; background-color: #fff; border-radius: 0.1rem; position: absolute; left: 0.7rem; top: 2.5rem;}
+.flowcard-dialog > header { height: 2rem; text-align: center;}
+.flowcard-dialog > header span { font-size: 0.26rem; color: #3a3a3a;}
+.flowcard-dialog > header p { line-height: 1.5rem; font-size: 0.44rem; color: #E96356;}
+.flowcard-dialog-logo {display: block; width: 1.2rem; height: 1.2rem; margin: 0 auto;}
+.flowcard-dialog-logo img { width: 100%; height: 100%; overflow: hidden;}
+.flowcard-dialog > section { font-size: 0.24rem; line-height: 1.8em;}
+.flowcard-dialog > section h2 {font-size: 0.3rem; line-height: 2em; text-align: center;}
+.flowcard-dialog > footer {}
+.flowcard-dialog > footer img { width: 100%;}
+
+.form-list-home li.flow-container {text-align: center; position: relative; top: 0; left: 0; height: 1.2rem;}
+.flow-box { width: 5.65rem; height: 1.2rem; overflow: hidden; margin: 0 auto; position: relative; top: 0; left: 0;}
+.fllow-box-code { width: 2.98rem; height: 2.98rem;
+    margin: 40px auto 0;
+}
+.fllow-box-code img { width: 100%; height: 100%;}
+.fllow-box > p { font-size: 0.28rem; line-height: 1.6em; padding-top: 0.4rem;}
+
+
+.container { width: 7.5rem;}
+.header-makered { background: url(../images/bg2.png); background-size: contain; width: 7.5rem; height: 2.5rem; padding-top: 0.8rem;}
+.header-makered .photo { border-radius: inherit; border: none; background-color: #fdfdfd; width: 1.6rem; height: 1.6rem; padding: 0;}
+.header-makered .photo img {border-radius: inherit; width: 100%; height: 100%;}
+.header-msg-makered { padding-left: 0.6rem;}
+.form {width: 6.9rem;}
+.ui-btn-4 { background: #e96356;}
+.ui-btn-5 { border: solid 1px #e96356; padding: 0; margin-top: 0.3rem; color: #e96356;}
+.ui-select { width: 4.2rem; border-radius: inherit; padding-right: 0;}
+.home-flow-item { border-radius: inherit; width: 1.7rem;}
+.form-list-home li.flow-box { width: 5.66rem; margin: 0 auto;}
+.home-flow-item i { background: url(../images/fllow-bg1.png); background-size: contain; width: 1.7rem; height: 0.68rem; border-radius: inherit;}
+.form-list-home-flow p.on { border-color: #e96356;}
+.form-list-home-flow p.on i {background: url(../images/fllow-bg2.png);}
+
+.prev,.next { display: block; width: 0.16rem; height: 0.25rem; position: absolute; top: 0.43rem; text-indent: -10000px; overflow: hidden;}
+.prev { left: 0; background-image: url(../images/left1.png); background-size: contain;}
+.next { right: 0;background-image: url(../images/right1.png); background-size: contain;}
+.flow-container a.prev.on {background-image: url(../images/left2.png);}
+.flow-container a.next.on {background-image: url(../images/right2.png);}
+
+
+
+
+
+
+
+
+
+
+
+

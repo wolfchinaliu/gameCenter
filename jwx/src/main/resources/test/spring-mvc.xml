@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+  <!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+  <!-- 加载controller的时候,不加载service,因为此时事物并未生效,若此时加载了service,那么事务无法对service进行拦截 -->
+  
+  <context:component-scan base-package="org.jeecgframework.web.*,weixin.*">
+    <context:exclude-filter type="annotation"
+      expression="org.springframework.stereotype.Service" />
+  </context:component-scan>
+
+  <!-- ApplicationContext -->
+  <bean class="org.jeecgframework.core.util.ApplicationContextUtil"></bean>
+
+  <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+  <bean id="mappingJacksonHttpMessageConverter"
+    class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+    <property name="supportedMediaTypes">
+      <list>
+        <value>text/html;charset=UTF-8</value>
+        <value>application/json;charset=UTF-8</value>
+      </list>
+    </property>
+  </bean>
+  <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射， 配置一个基于注解的定制的WebBindingInitializer，解决日期转换问题，方法级别的处理器映射 -->
+  <bean
+    class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <property name="cacheSeconds" value="0" />
+    <property name="messageConverters">
+      <list>
+        <ref bean="mappingJacksonHttpMessageConverter" /><!-- json转换器 -->
+      </list>
+    </property>
+    <property name="webBindingInitializer">
+      <bean class="org.jeecgframework.core.interceptors.MyWebBinding" />
+    </property>
+  </bean>
+  <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+  <bean id="defaultViewResolver"
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    p:order="3">
+    <property name="viewClass"
+      value="org.springframework.web.servlet.view.JstlView" />
+    <property name="contentType" value="text/html" />
+    <property name="prefix" value="/webpage/" />
+    <property name="suffix" value=".jsp" />
+    <property name="redirectHttp10Compatible" value="false" />
+  </bean>
+  <bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+    p:defaultEncoding="UTF-8">
+    <property name="maxUploadSize" value="104857600"/>
+    <property name="maxInMemorySize" value="4096"/>
+  </bean>
+
+    <!-- Bean解析器,级别高于默认解析器,寻找bean对象进行二次处理 -->
+    <bean id="beanNameViewResolver"
+          class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0">
+    </bean>
+    <!-- Excel 处理 根据用户输入进行对象处理 -->
+    <bean id="jeecgExcelView" class="org.jeecgframework.poi.excel.view.JeecgSingleExcelView" />
+  <!-- 方言 -->
+  <bean id="dialect"
+    class="org.jeecgframework.core.common.hibernate.dialect.DialectFactoryBean">
+    <property name="dbType" value="${jdbc.dbType}" />
+  </bean>
+  
+<!--     <aop:aspectj-autoproxy />
+    配置数据库注解aop
+    <bean id="manyDataSourceAspect" class="org.jeecgframework.core.aop.DataSourceSwitchAspect"></bean>
+    配置数据库注解aop
+
+    <aop:config>
+      order 值越大优先值越低
+      <aop:aspect id="dataSourceAspect" ref="manyDataSourceAspect" >
+        <aop:around method="switchDataSource" pointcut="@annotation(org.jeecgframework.core.annotation.DataSourceSwitch)" />
+      </aop:aspect>
+    </aop:config>
+   -->
+  
+  <!-- 异常处理类 -->
+  <bean id="exceptionHandler"
+    class="org.jeecgframework.core.common.exception.MyExceptionHandler" />
+  <!-- 系统错误转发配置[并记录错误日志] -->
+  <bean
+    class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <property name="defaultErrorView" value="500"></property>   <!-- 默认为500，系统错误(error.jsp) -->
+    <property name="defaultStatusCode" value="404"></property>
+    <property name="statusCodes"><!-- 配置多个statusCode -->
+      <props>
+        <prop key="error">500</prop>  <!-- error.jsp -->
+        <prop key="error1">404</prop>    <!-- error1.jsp -->
+      </props>
+    </property>
+    <property name="exceptionMappings">
+      <props>
+        <!-- 这里你可以根据需要定义N多个错误异常转发 -->
+        <prop key="java.sql.SQLException">dbError</prop> <!-- 数据库错误(dbError.jsp) -->
+        <prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop> <!-- 参数绑定错误(如：必须参数没传递)(bizError.jsp) -->
+        <prop key="java.lang.IllegalArgumentException">bizError</prop>  <!-- 参数错误(bizError.jsp) -->
+        <prop key="org.springframework.validation.BindException">bizError</prop>  <!-- 参数类型有误(bizError.jsp) -->
+        <prop key="java.lang.Exception">unknowError</prop>  <!-- 其他错误为'未定义错误'(unknowError.jsp) -->
+      </props>
+    </property>
+  </bean>
+  <!-- 权限拦截器 -->
+  <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="weixin.util.AvoidRepeatOperationFilter">
+                <property name="avoidURLMap">
+                    <map>
+                        <entry key="testChargeFlow" value="充值"/>
+                        <entry key="sign" value="签到"/>
+                        <entry key="luckyTurntable" value="大转盘"/>
+                        <entry key="shakeHand" value="摇一摇"/>
+                        <entry key="openRedpacket" value="拆红包"/>
+                        <entry key="openRedPacket" value="拆红包1"/>
+                        <entry key="scratchCard" value="刮刮卡"/>
+                        <entry key="submitRiddleAnswer" value="猜灯谜"/>
+                        <entry key="binding" value="绑定"/>
+                        <entry key="share" value="分享"/>
+                    </map>
+                </property>
+            </bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+      <mvc:mapping path="/**" />
+      <bean class="org.jeecgframework.core.interceptors.EncodingInterceptor" />
+    </mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/**" />
+      <bean class="org.jeecgframework.core.interceptors.AuthInterceptor">
+        <property name="excludeUrls">
+          <list>
+              <value>registerController.do?goRegister</value>
+              <value>registerController.do?doRegister</value>
+
+              <value>loginController.do?goLogin</value>
+              <value>loginController.do?goPwdInit</value>
+              <value>loginController.do?getLogo</value>
+              <value>loginController.do?pwdInit</value>
+              <value>loginController.do?login</value>
+              <value>loginController.do?checkuser</value>
+              <value>loginController.do?loginout</value>
+
+              <value>repairController.do?repair</value>
+              <value>repairController.do?deleteAndRepair</value>
+              
+              <value>cmsMenuController.do?index</value>
+
+              <value>cmsArticleController.do?cmsArticleListShow</value>
+              <value>cmsArticleController.do?datagridwx</value>
+              <value>cmsArticleController.do?cmsArticleShow</value>
+
+              <value>cmsController.do?goPage</value>
+              <value>cmsController.do?getMenuList</value>
+              
+              <value>shopController.do?shopindex</value>
+              <value>shopController.do?payOrder</value>
+              <value>shopController.do?category</value>
+              <value>shopController.do?weixincard</value>
+              <value>shopController.do?promotion</value>
+              <value>shopController.do?orders</value>
+              <value>shopController.do?userindex</value>
+              <value>shopController.do?shopcar</value>
+              <value>shopController.do?coin</value>
+              <value>shopController.do?mycard</value>
+              <value>shopController.do?toPay</value>
+              <value>shopController.do?doPay</value>
+              <value>shopController.do?confirmdelivery</value>
+              <value>shopController.do?orderdetail</value>
+              <value>shopController.do?celorder</value>
+              <value>shopController.do?delorder</value>
+              <value>shopController.do?refundorder</value>
+              <value>shopController.do?toAppraise</value>
+              <value>shopController.do?doAppraise</value>
+              <value>shopController.do?location</value>
+              <value>shopController.do?locationDetail</value>
+              <value>shopController.do?cardList</value>
+              <value>shopController.do?addshopcar</value>
+              <value>shopController.do?delshopcar</value>
+              <value>shopController.do?confirmOrder</value>
+              <value>shopController.do?createOrder</value>
+              <value>shopController.do*</value>
+
+              <value>shopGoodsController.do?golist</value>
+              <value>shopGoodsController.do?goodsinfo</value>
+              <value>shopGoodsController.do*</value>
+              <value>shopGoodsController.do?godetail</value>
+              <value>shopGoodsController.do?goodsappraise</value>
+              <value>shopGoodsController.do?searchGoods</value>
+              <value>shopGoodsController.do?getGoodsList</value>
+
+              <value>weixin.do?api</value>
+
+              <value>wxpay.do?api</value>
+
+              <value>locationController.do?audit</value>
+
+              <value>zpController.do?iscontinue</value>
+              <value>zpController.do?saveScratchRecord</value>
+              <value>zpController.do?getZpPize</value>
+              <value>zpController.do?saverecord</value>
+              <value>zpController.do?ggl_new</value>
+              <value>zpController.do?ggl</value>
+              <value>zpController.do?zp</value>
+              <value>zpController.do?goZhuanpan</value>
+
+              <value>weixinCmsStyleController.do?upload</value>
+
+              <value>newsItemController.do?newscontent</value>
+
+              <!-- 保存用户 -->
+              <value>userController.do?saveUser</value>
+              <value>upload*</value>
+
+              <value>helpController.do?list</value>
+
+              <value>weixinCateController.do?index</value>
+              <value>weixinCateController.do?location</value>
+              <value>weixinCateController.do?locationDetail</value>
+              <value>weixinCateController.do?foodList</value>
+              <value>weixinCateController.do?foodDetail</value>
+              <value>weixinCateController.do?toOrder</value>
+              <value>weixinCateController.do?doOrder</value>
+  
+              <value>lotteryController.do?scratchCard</value>
+              <value>lotteryController.do?saveScratchRecord</value>
+              <value>lotteryController.do?startLottery</value>
+              <value>lotteryController.do?goRedirectZhuanpan</value>
+              <value>lotteryController.do?goZhuanpan</value>
+              <value>lotteryController.do?getZpPize</value>
+              <value>lotteryController.do?saverecord</value>
+              <value>lotteryController.do?luckyTurntable</value>
+              <value>lotteryController.do?openRedpacket</value>
+              <value>lotteryController.do?shakeHand</value>
+              <value>lotteryController.do?afterShare</value>
+
+              <value>weixinCustomerMsgController.do?talk</value>
+              <value>weixinCustomerMsgController.do?GetMessageData</value>
+              <value>weixinCustomerMsgController.do?sendmessage</value>
+
+              <!-- crm -->
+              <value>crmLoginController.do?index</value>
+              <value>crmLoginController.do?login</value>
+              <value>crmLoginController.do?register</value>
+              <value>crmLoginController.do?style</value>
+              <value>crmLoginController.do?userinfo</value>
+              <value>crmLoginController.do?updatepass</value>             
+
+              <value>crmController.do?crmlist</value>
+              <value>crmController.do?oalist</value>
+              <value>crmController.do?morelist</value>
+              <value>crmController.do?messagelist</value>
+              <value>crmController.do?message</value>
+              <value>crmController.do?set</value>
+
+              <value>customController.do?customlist</value>
+              <value>customController.do?addCustom</value>
+              <value>customController.do?contactlist</value>
+              <value>customController.do?addContact</value>
+
+              <value>trendsController.do?writeRrends</value>
+              <value>trendsController.do?trends</value>
+
+              <value>messageController.do?msglist</value>
+
+              <value>setController.do?set</value>
+              <value>setController.do?invite</value>
+              <value>setController.do?about</value>
+              <value>setController.do?link</value>
+              <value>setController.do?advise</value>
+              <value>setController.do?help</value>
+              
+              <!-- 微信授权 -->
+              <value>weixinOpenPlatform.do?authEvent</value>
+              <value>weixinOpenPlatform.do?authEvent2</value>
+              <value>weixinOpenPlatform.do?pageAuth</value>
+              <value>weixinOpenPlatform.do?pageAuth2</value>
+              <value>weixinOpenPlatform.do?getShiliuOpenId</value>
+              <value>weixinOpenPlatform.do?shiliuOpenIdCallback</value>
+
+              <value>weixinArticleController.do?goMessage</value>
+
+              <value>mainController.do?load</value>
+              <value>mainController.do?goRedirectMain</value>
+              <value>mainController.do?goMain</value>
+              <value>mainController.do?IsBindng</value>
+              <value>mainController.do?load1</value>
+              <value>mainController.do?goBinding</value>
+              <value>mainController.do?center</value>
+
+              <value>bindingController.do?load</value>
+              <value>bindingController.do?binding</value>
+              <value>bindingController.do?redirectBinding</value>
+              <value>bindingController.do?sendMessage</value>
+              <value>bindingController.do?goBinding</value>
+
+              <value>earnFlowController.do?earnFlowPage</value>
+              <value>earnFlowController.do?mysubscribe</value>
+              <value>earnFlowController.do?myPage</value>
+              <value>earnFlowController.do?mydatagrid</value>
+              <value>earnFlowController.do?acctPage</value>
+              <value>earnFlowController.do?startSubscribe</value>
+              <value>earnFlowController.do?goSubscribe</value>
+              <value>earnFlowController.do?moreFlow</value>
+              <value>earnFlowController.do?myallActivity</value>
+
+              <value>signController.do?sign</value>
+              <value>signController.do?load</value>
+              <value>signController.do?goSign</value>
+              <value>signController.do?startLoad</value>
+
+              <value>shareController.do?load</value>
+              <value>shareController.do?showSharePage</value>
+              <value>shareController.do?share</value>
+              <value>shareController.do?forwardShare</value>
+              <value>shareController.do?QRcode</value>
+              <value>shareController.do?startLoad</value>
+
+              <value>shareController1.do?load</value>
+              <value>shareController1.do?showSharePage</value>
+              <value>shareController1.do?share</value>
+              <value>shareController1.do?forwardShare</value>
+              <value>shareController1.do?QRcode</value>
+              <value>shareController1.do?startLoad</value>
+
+			  <value>shareController2.do?load</value>
+              <value>shareController2.do?showSharePage</value>
+              <value>shareController2.do?share</value>
+              <value>shareController2.do?forwardShare</value>
+              <value>shareController2.do?QRcode</value>
+              <value>shareController2.do?startLoad</value>
+
+              <value>shareFlowController.do?myShare</value>
+              <value>shareFlowController.do?startShare</value>
+              <value>shareFlowController.do?goShare</value>
+              <value>shareFlowController.do?QRcodePage</value>
+
+              <value>flowCardController.do?load</value>
+              <value>flowCardController.do?goLoad</value>
+              <value>flowCardController.do?goGetFlow</value>
+              <value>flowCardController.do?startLoad</value>
+              <value>flowCardController.do?followAndBind</value>
+              <value>flowCardController.do?showCardInfo</value>
+              <value>flowCardController.do?scanFlowCard</value>
+
+              <value>flowCardInfoController.do?flowCardquery</value>
+
+              <value>gameFlowController.do?myLotty</value>
+
+              <value>getRedpacketController.do?getRedpacket</value>
+              <value>getRedpacketController.do?openRedPacket</value>
+              <value>getRedpacketController.do?gotRedpacket</value>
+              <value>getRedpacketController.do?followAndBind</value>
+              <value>getRedpacketController.do?test</value>
+              <value>getRedpacketController.do?NoattentionPublicNum</value>
+              <value>getRedpacketController.do?senderOpenPacket</value>
+
+              <value>makeRedpacketController.do?makeRedpacket</value>
+              <value>makeRedpacketController.do?doMake</value>
+              <value>makeRedpacketController.do?shareRedpacket</value>
+              <value>moreRedpacketController.do?moreRedpacket</value>
+              <value>moreRedpacketController.do?moreRedpacketList</value>
+  
+              <value>externalRecharge.do?rechargeExternal</value>
+              <value>externalRecharge.do?goTest111</value>
+  
+              <value>weiDoorController.do?startWeidoor</value>
+              <value>weiDoorController.do?goRedirectWeidoor</value>
+              <value>weiDoorController.do?goWeidoor</value>
+              <value>weiDoorController.do?goFlowCenter</value>
+
+              <value>personFlowCenterController.do?goPersonCenter</value>
+              <value>personFlowCenterController.do?goPersonFlowRecord</value>
+              <value>personFlowCenterController.do?goflowGetChargeRecord</value>
+              <value>personFlowCenterController.do?goGetFlowCharge</value>
+
+              <value>pptjumpPageController.do?goPPTJumpPage</value>
+
+              <value>userFlowRecordController.do?goUserFlowRecord</value>
+              <value>userFlowRecordController.do?goUserChargeFlowRecord</value>
+              <value>userFlowRecordController.do?goUserReceiveRecord</value>
+
+              <value>userChargeController.do?userChargeView</value>
+              <value>userChargeController.do?testChargeFlow</value>
+              <value>userChargeController.do?validateIsHaveInterface</value>
+              <value>userChargeController.do?testFamilyNumber</value>
+              <value>userChargeController.do?bindFamilyNumber</value>
+              <value>userChargeController.do?loadFamilyNumber</value>
+              <value>userChargeController.do?laodFlowMeal</value>
+
+              <value>shakeController.do?goShake</value>
+              <value>shakeController.do?goShakeMotion</value>
+              <value>shakeController.do?goShakeResult</value>
+              <value>shakeController.do?doShakeResult</value>
+              <value>shakeController.do?goCiShuBuGou</value>
+              <value>shakeController.do?goLaiChiLe</value>
+              <value>shakeController.do?goBeiJu</value>
+              <value>shakeController.do?goYaoWanLe</value>
+              <value>shakeController.do?goResult</value>
+
+              <value>weixinMemberController.do?loadMembersDetailInfo</value>
+              <value>weixinMemberController.do?getPhoneNumberByOpenId</value>
+
+              <value>weixinMainController.do?goDefault</value>
+              <value>weixinWinningrecordController.do?goPrizeRecord</value>
+              <value>weixinShakeController.do?shakeRecord</value>
+
+              <value>guessRiddlesController.do?startLottery</value>
+              <value>guessRiddlesController.do?NoattentionPublicNum</value>
+              <value>guessRiddlesController.do?followAndBind</value>
+              <value>guessRiddlesController.do?submitRiddleAnswer</value>
+              <value>guessRiddlesController.do?checkAnswers</value>
+          
+
+              <value>moreFlowSelfController.do?moreFlowList</value>
+
+              <value>rechargeHandler.do?chargeReful</value>
+              <value>rechargeHandler.do?queryChargeState</value>
+              <value>rechargeHandler.do?chargeJiangXiTest</value>
+              <value>rechargeHandler.do?queryChargeJiangXiTest</value>
+              <value>rechargeHandler.do?chargeJiangXiTestSec</value>
+              <value>rechargeHandler.do?queryChargeJiangXiTestSec</value>
+  
+              <value>reportCountController.do?userGiveFlowList</value>
+              <value>reportCountController.do?userFlowdatagrid</value>
+              <value>reportCountController.do?userGetFlowList</value>
+              <value>reportCountController.do?userGetFlowdatagrid</value>
+              <!-- 接口 -->
+              <value>integrate.do?wx_userReceive_getBusinessKey</value>
+              <value>integrate.do?wx_userReceive_receive</value>
+              <value>integrate.do?wx_bindingPhone</value>
+
+              <value>integrate.do?wx_userPay_getBusinessKey</value>
+              <value>integrate.do?wx_userPay_pay</value>
+              <value>integrate.do?wx_pay</value>
+              <value>integrate.do?verifyphone_paypwd</value>
+              <value>integrate.do?go_setsaypwd</value>
+              <value>integrate.do?setpaypwd</value>
+
+              <value>integrate.do?app_bindingPhone</value>
+              <value>integrate.do?app_userReceive_getBusinessKey</value>
+              <value>integrate.do?app_userReceive_receive</value>
+              <value>integrate.do?app_userPay_getBusinessKey</value>
+              <value>integrate.do?app_userPay_pay</value>
+			  <value>integrate.do?goAppUserCharge</value>
+              <value>integrate.do?appUserGetTrueFlow</value>
+              <value>integrate.do?appSetPayPwd</value>
+              <value>integrate.do?findPwd</value>
+              <value>integrate.do?gotest</value>
+              <value>integrate.do?test</value>
+              <value>acctListController.do?weixinacctList</value>
+              <value>acctListController.do?showAcct</value>
+              <value>addressController.do?viewMap</value>
+              <value>acctListController.do?goAcctQRcode</value>
+              
+              <!-- 手工送流量 -->
+              <value>manualGivenController.do?manualRecords</value>
+              <value>manualGivenController.do?patchManualRecords</value>
+              <value>manualGivenController.do?goAddManual</value>
+              <value>manualGivenController.do?doManualGiven</value>
+              <value>manualGivenController.do?exportXls</value>
+              <value>manualGivenController.do?doupdate</value>
+              <value>manualGivenController.do?uploadtxt</value>
+              
+              <!-- 广告 -->
+              <value>adAction.do?adDetail</value>
+
+              <!-- 充值接口回调接口 -->
+              <value>callbackController.do?wangsu</value>
+              <!-- 活动接口 -->
+              <value>activityController.do?startActivity</value>
+              <value>activityController.do?playActivity</value>
+              <value>activityController.do?subQuestionAnswer</value>
+              <value>activityController.do?subGameRecord</value>
+               <!-- 游戏中心 -->
+               <value>gameController.do?startGame</value>
+               <value>gameController.do?userGetFlow</value>
+               <!-- app  -->
+               <value>applotteryController.do?startLottery</value>
+               <value>applotteryController.do?bindingPhone</value>
+          </list>
+        </property>
+      </bean>
+    </mvc:interceptor>
+  </mvc:interceptors>
+</beans>

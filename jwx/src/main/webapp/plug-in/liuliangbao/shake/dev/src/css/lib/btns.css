@@ -1,0 +1,23 @@
+﻿@charset "UTF-8";
+/* 要海归公用 btns */
+.btns { display: inline-block; border: none; vertical-align: middle;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px; line-height: 26px; overflow: hidden; text-align: center; background-position: left top;
+    background-repeat: no-repeat; cursor: pointer;}
+.btns i { display: none;}
+.btns-1 { height: 48px; line-height: 48px; background-color: #1ebc94; color: #fff; font-size: 18px; padding: 0 80px;}
+.btns-1:hover {  background-color: #1cad88;  color: #fff;}
+.btns-2 {  width: 90px; height: 40px; line-height: 40px; font-size: 14px; color: #fff; background-color: #58a4f3;}
+.btns-2:hover { background-color: #569fea; color: #fff;}
+.btns-3 { height: 48px; line-height: 48px; color: #999; border: solid 1px #D5D5D5; background-color: #fff; font-size: 14px; padding: 0 20px;}
+
+.btns-upload-photo { *display: block; width: 120px; height: 120px; background: url(../../images/lib/btns/btns1.png) no-repeat left top; text-indent: -10000px; overflow: hidden;}
+.btns-upload-img { *display: block; width: 200px; height: 140px; background: url(../../images/lib/btns/btns2.png) no-repeat left top; text-indent: -10000px; overflow: hidden;}
+.btns-add { width: 30px; height: 30px; background: url(../../images/lib/btns/btns3.png) no-repeat left top; text-indent: -10000px; overflow: hidden;}
+
+a.novisible,a.novisible:hover,button.novisible,button.novisible:hover,input.novisible,input.novisible:hover
+{ background-color: #c1c1c1; color: #fff; cursor: default;}
+a.btns-loading,button.btns-loading,a.btns-loading:hover,button.btns-loading:hover
+{ background-color: #c1c1c1; color: #fff; cursor: default;}
+a.btns-loading i,button.btns-loading i { display: inline-block; vertical-align: -3px;*vertical-align: middle; margin-right: 5px;}

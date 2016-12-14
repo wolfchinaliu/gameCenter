@@ -1,0 +1,28 @@
+﻿@charset "UTF-8";
+
+.header-card { width: 7.5rem; height: 4.53rem; background: url(../../images/card/bg.jpg) no-repeat left top; background-size: contain; position: relative; top: 0; left: 0;}
+.header-card2 { background: url(../../images/card/bg2.jpg) no-repeat left top; background-size: contain;}
+
+.header-card > a.btn-xq { display: block; width: 1.45rem; height: 0.44rem; line-height: 0.44rem; text-align: center; font-size: 0.24rem; color: #FFFFFF; background-color: #f46756; transform: skew(-20deg); text-decoration: none; position: absolute; right: 0.3rem; top: 1.34rem;}
+.card-prize { width: 2.03rem; height: 0.65rem; position: absolute; top: 3.23rem; left: 2.73rem; background-color: #FFFFFF; font-size: 0.32rem; text-align: center; line-height: 0.65rem; z-index: 1;}
+.card-scratchpad { width: 3rem; height: 1rem; position: absolute; top: 3rem; left: 2.2rem;  background-size: contain; z-index: 10;}
+#ggl-result-over {position: absolute; top: 0; left: 0; z-index: 10; width: 100%; height: 100%;}
+
+
+.card {width: 7.16rem; margin: 0 auto;}
+
+.zhuanpan-msg {  font-size: 0.28rem; text-align: center; height: 0.6rem; line-height: 0.6rem; position: relative; top: 0; left: 0;}
+.zhuanpan-msg-tips { display: inline-block; position: absolute; top: 0.13rem; right: 0; background-color: #DDDDDD; border-radius: 0 0.1rem 0.1rem 0; height: 0.28rem; font-size: 0.24rem; line-height: 0.28rem; padding: 0 0.15rem 0 0.1rem;}
+.zhuanpan-msg-tips img { width: 0.28rem; height: 0.28rem; position: absolute; top: 0; left: -0.25rem;}
+.zhuanpan-msg-tips em { font-style: normal;}
+
+.zhuanpan-gd { width: 6.9rem; height: 1.23rem; background: url(../../images/zhuanpan/bg3.png) no-repeat left top; margin: 0 auto; background-size: contain; position: relative; top: 0; left: 0; overflow: hidden; margin-top: 0.1rem;}
+.zhuanpan-list { width: 6.1rem; padding-left: 0.3rem; position: absolute; top: 0; left: 0;}
+.zhuanpan-list li { height: 0.4rem; line-height: 0.4rem; text-align: center; font-size: 0.26rem;}
+.zhuanpan-list li span { float: right; color: #898989; font-size: 0.2rem;}
+
+
+.card-winning { width: 7.16rem; height: 2.45rem; margin: 0 auto; padding-top: 2.1rem;}
+.card-winning > p.p1 { color: #FA6958; font-size: 0.4rem; padding-top: 0.5rem; text-align: center;}
+.card-winning > p.p2 { font-size: 0.24rem; padding-top: 0.2rem; text-align: center;}
+.card-winning > a { display: block; margin: 0.2rem auto 0 auto; width: 1.5rem; height: 0.44rem; line-height: 0.44rem; text-decoration: none; background-color: #EBEBEB; font-size: 0.28rem; color: #FA6958; text-align: center; border-radius: 0.1rem;}

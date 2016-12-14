@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<!-- 优先使用最新版本 IE 和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+	<meta content="yes" name="apple-mobile-web-app-capable"/>
+	<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+	<meta name="format-detection" content="telphone=no, email=no"/>
+	<title>摇一摇 - 个人主页</title>
+	<link rel="stylesheet" type="text/css" href="../../src/css/hongbao/normalize.css">
+    <script src="../../src/js/lib/common.js"></script>
+</head>
+<body>
+	<article class="container">
+		<!--页头-->
+		<header class="header header-makered">
+			<figure class="photo p140-140">
+				<a href="#"><img src="../../res/images/1.jpg" alt="" /></a>
+			</figure>
+			<ul class="header-msg-makered">
+				<li>昵称：XXX</li>
+				<li>手机号：XXXXXXXXXXX</li>
+				<li>省内流量：XXX <span class="plrem02">全国流量：XXX</span></li>
+			</ul>
+		</header>
+		
+		<section class="main">
+			
+			<section class="main">
+				<dl class="redlist">
+					<dt>
+						<span>昵称</span>
+						<span>时间</span>
+						<span>摇取数额</span>
+					</dt>
+					<dd class="ptrem01">
+						<span title="某某某">某某某</span>
+						<span>2016-11-12</span>
+						<span>领取XX.XM</span>
+					</dd>
+					<dd class="ptrem01">
+						<span title="某某某">某某某</span>
+						<span>2016-11-12</span>
+						<span>领取XX.XM</span>
+					</dd>
+					<dd>
+						<span title="某某某某某某某某某某某某">某某某某某某某某某某某某某某某</span>
+						<span>2016-11-12</span>
+						<span>领取XX.XM</span>
+					</dd>
+				</dl>
+			</section>
+			
+		</section>
+		
+	</article>
+	
+
+</body>
+</html>

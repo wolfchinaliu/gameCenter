@@ -1,0 +1,58 @@
+﻿@charset "UTF-8";
+/* 墨斗鱼公用header */
+
+.header { width: 100%; min-width: 1170px; height: 80px; background: url(../../images/header/header_bg.png) repeat-x left top;
+	 position: relative; top: 0; left: 0; z-index: 1000;}
+.header-box { width: 1170px; margin: 0 auto;}
+.logo {width: 115px; height: 40px; padding-top: 10px; float: left; text-indent: -10000px; overflow: hidden;}
+.logo a {display: block; width: 115px; height: 40px; background: url(../../images/logo/logo_115x40.png) no-repeat left top;}
+.nav { width: 575px; padding-left: 45px; height: 70px; float: left;}
+.nav li {display: inline-block; height: 70px; line-height: 70px; float: left;}
+.nav li a { display: block; padding: 0 15px; font-size: 16px; color: #fff;}
+.nav li a:hover {background-color: #1a745d;}
+.nav li a.on {background-color: #1a745d;}
+/*search*/
+.header-search {width: 236px; width: 232px; height: 30px; border: solid 1px #d5d5d5; float: left;
+	 position:relative; top: 20px; left: 0;}
+.header-search-select { width: 69px; height: 30px; line-height: 30px; border-right: solid 1px #d5d5d5; position: absolute; 
+	left: 0; top: 0;}
+.header-search-select label { display: block; width: 50px; height: 30px; float: left; color: #fff; text-align: center; }
+.header-search-select .icons-7 { position: absolute; top: 12px; left: 50px; transition: all .5s;}	
+.header-search-select:hover .icons-7 { transform: rotate(180deg);}
+.header-search-list { width: 69px; padding: 5px 0; border: solid 1px #d5d5d5; position: absolute; left: -1px; top: 30px;
+	 background-color: #1ebc94; color: #fff; display: none;}
+.header-search-list li { height: 22px; line-height: 22px; text-align: center; cursor: pointer;}
+.header-search-list li:hover { background-color: #1a745d;}
+.header-search-select:hover .header-search-list {display: block;}
+.header-search .ui-text { width: 125px; padding: 7px 5px; position: absolute; top: 0; left: 70px; background: none;
+	border: none; color: #fff;}
+.header-search .btns-1 { width: 20px; height: 20px; padding: 5px; position: absolute; top: 0; right: 0;}
+.header-search .btns-1 i {display: block;}
+/*login*/
+.header-login { width: 170px; height: 70px; position: relative; top: 0; left: 0; float: right;}
+.header-login-box { height: 30px; padding-top: 20px; line-height: 30px;}
+.header-login-box li { width: 40px; padding-left: 20px; float: left;}
+.header-login-box a {  font-size: 14px; color: #fff;}
+.header-login-box a:hover { text-decoration: underline;}
+.header-photo {}
+.header-login .ui-photo {position: absolute; top: 13px; right: 0px; left: auto;}
+.header-login-release {width: 25px; height: 25px; display: block; position: absolute; top: 24px; left: 0;}
+.header-login-message { width: 25px; height: 20px; display: block; position: absolute; top: 29px; left: 58px; z-index: 1000;}
+.header-login-message .icons-3 { position: absolute; right: -10px; top: -10px;}
+.header-login-user { width: 124px; padding: 57px 0 10px 0; position: absolute; top: 0; right: 0; 
+	background-color: #1ebc94; display: none;}
+.header-photo:hover .header-login-user { display: block;}
+.header-login-user dt {border-bottom: solid 1px #fff; padding-bottom: 5px; margin-bottom: 10px;}
+.header-login-user dd { height: 26px; line-height: 26px; text-align: center;}
+.header-login-user dd a { color: #fff; font-size: 14px;}
+.header-login-user dd a:hover { text-decoration: underline;}
+.header-login-user .ui-photo { position: relative; margin: 0 auto; top: 0;}
+.header-login-user a.header-user-name { display: block; width: 110px; padding-top: 5px; margin: 0 auto; height: 26px; line-height: 26px; color: #fff;
+	 white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px; font-weight: bolder;}
+.header-login-user a.header-user-name:hover { text-decoration: underline;}
+.header-photo img {position: absolute; top: 0; left: 0; z-index: 100;}
+
+
+
+
+

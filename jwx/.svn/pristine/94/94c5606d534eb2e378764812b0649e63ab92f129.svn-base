@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<title>jQuery手机移动端触屏日历日期选择 - 【科e互联】</title>
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.js" ></script>
+<script type="text/javascript" src="js/date.js" ></script>
+<script type="text/javascript" src="js/iscroll.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$('#beginTime').date();
+	$('#endTime').date({theme:"datetime"});
+});
+</script>
+</head>
+<body class="keBody">
+<h1 class="keTitle">jQuery手机移动端触屏日历日期选择</h1>
+<div class="kePublic">
+<!--效果html开始--> 
+<div class="demo">
+	<div class="lie">日期设置-1:<input  id="beginTime" class="kbtn" /></div>
+	<div class="lie">日期设置-2:<input id="endTime" class="kbtn" /></div>
+</div>
+<div id="datePlugin"></div>
+<!--效果html结束-->
+<div class="clear"></div>
+</div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+/**
+ * 头像区域
+ * @description    w80-80 为头像宽高类
+*/
+.ui-photo { background-color: #fff; position: relative; top: 0; left: 0;}
+.ui-photo a { display: block; width: 100%; height: 100%;}
+.w30-30 { width: 30px; height: 30px;}
+.w44-44 { width: 44px; height: 44px;}
+.w60-60 { width: 60px; height: 60px;}
+.w80-80 { width: 80px; height: 80px;}
+.w100-100 { width: 100px; height: 100px;}
+.w120-120 { width: 120px; height: 120px;}
+.ui-photo .icons-state { position: absolute; right: 0; bottom: 0; z-index: 100; }
+.w30-30 .icons-state { width: 30px; height: 30px; background: url(../../images/lib/photo/head30x30.png) no-repeat left top; }
+.w44-44 .icons-state { width: 44px; height: 44px; background: url(../../images/lib/photo/head44x44.png) no-repeat left top; }
+.w60-60 .icons-state { width: 60px; height: 60px; background: url(../../images/lib/photo/head60x60.png) no-repeat left top; }
+.w80-80 .icons-state { width: 80px; height: 80px; background: url(../../images/lib/photo/head80x80.png) no-repeat left top; }
+.w100-100 .icons-state { width: 100px; height: 100px; background: url(../../images/lib/photo/head100x100.png) no-repeat left top; }
+.w120-120 .icons-state { width: 120px; height: 120px; background: url(../../images/lib/photo/head120x120.png) no-repeat left top; }
